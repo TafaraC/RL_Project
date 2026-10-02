@@ -1,7 +1,7 @@
 """DQN baseline (course-covered algorithm A).
 
 Standard DQN (Mnih et al., 2015): CNN Q-network, target network updated
-by Polyak averaging, uniform replay, epsilon-greedy exploration -- with
+by periodic hard copies, uniform replay, epsilon-greedy exploration -- with
 one ARC-AGI-3-specific addition: illegal actions (per
 `info["action_mask"]` from ArcAgi3GymEnv) are excluded both when acting
 and when bootstrapping the TD target, otherwise the agent wastes most of
@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import copy
 import random
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass
 
 import numpy as np
 import torch
@@ -34,7 +34,7 @@ class DQNConfig:
     gamma: float = 0.99
     lr: float = 2.5e-4
     batch_size: int = 64
-    buffer_capacity: int = 50_000
+    buffer_capacity: int = 10_000
     learning_starts: int = 1_000
     train_freq: int = 4
     target_update_freq: int = 1_000  # hard update every N gradient steps
@@ -54,7 +54,10 @@ class DQNAgent:
     evaluation with epsilon=0.
     """
 
-    def __init__(self, obs_shape: tuple[int, ...], n_actions: int, config: DQNConfig = DQNConfig()):
+    def __init__(self, obs_shape: tuple[int, ...], n_actions: int, config: DQNConfig | None = None, *, device: str | None = None, inference_only: bool = False):
+        config = copy.deepcopy(config) if config is not None else DQNConfig()
+        if device is not None:
+            config.device = device
         self.cfg = config
         self.n_actions = n_actions
         random.seed(config.seed)
@@ -67,7 +70,7 @@ class DQNAgent:
         self.target_q = copy.deepcopy(self.q).to(self.device)
         self.target_q.eval()
         self.opt = torch.optim.Adam(self.q.parameters(), lr=config.lr)
-        self.buffer = ReplayBuffer(config.buffer_capacity, obs_shape, n_actions, seed=config.seed)
+        self.buffer = None if inference_only else ReplayBuffer(config.buffer_capacity, obs_shape, n_actions, seed=config.seed)
 
         self._env_steps = 0
         self._grad_steps = 0
@@ -81,7 +84,7 @@ class DQNAgent:
     def act(self, obs: np.ndarray, action_mask: np.ndarray, greedy: bool = False) -> int:
         legal = np.flatnonzero(action_mask)
         if legal.size == 0:
-            legal = np.arange(self.n_actions)  # degenerate fallback; shouldn't happen
+            raise ValueError("No legal actions available")
         if not greedy and random.random() < self.epsilon():
             return int(np.random.choice(legal))
 
@@ -91,11 +94,13 @@ class DQNAgent:
         return int(np.argmax(q_masked))
 
     def observe(self, obs, action, reward, next_obs, done, action_mask, next_action_mask) -> None:
+        if self.buffer is None:
+            raise RuntimeError("Inference-only agent cannot observe training transitions")
         self.buffer.add(obs, action, reward, next_obs, done, action_mask, next_action_mask)
         self._env_steps += 1
 
     def maybe_train(self) -> dict | None:
-        if len(self.buffer) < self.cfg.learning_starts:
+        if self.buffer is None or len(self.buffer) < max(1, self.cfg.learning_starts):
             return None
         if self._env_steps % self.cfg.train_freq != 0:
             return None
@@ -137,9 +142,9 @@ class DQNAgent:
 
     # ------------------------------------------------------------------
     def save(self, path: str) -> None:
-        torch.save({"q": self.q.state_dict(), "cfg": self.cfg}, path)
+        torch.save({"q": self.q.state_dict(), "cfg": asdict(self.cfg)}, path)
 
     def load(self, path: str) -> None:
-        ckpt = torch.load(path, map_location=self.device)
+        ckpt = torch.load(path, map_location=self.device, weights_only=True)
         self.q.load_state_dict(ckpt["q"])
         self.target_q.load_state_dict(ckpt["q"])

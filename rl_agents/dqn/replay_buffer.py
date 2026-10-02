@@ -25,9 +25,12 @@ class Batch(NamedTuple):
 
 class ReplayBuffer:
     def __init__(self, capacity: int, obs_shape: tuple[int, ...], n_actions: int, seed: int = 0):
+        if capacity <= 0:
+            raise ValueError("capacity must be positive")
+        self.obs_shape = obs_shape
         self.capacity = capacity
-        self.obs = np.zeros((capacity, *obs_shape), dtype=np.float32)
-        self.next_obs = np.zeros((capacity, *obs_shape), dtype=np.float32)
+        self.obs = [None] * capacity
+        self.next_obs = [None] * capacity
         self.action = np.zeros(capacity, dtype=np.int64)
         self.reward = np.zeros(capacity, dtype=np.float32)
         self.done = np.zeros(capacity, dtype=np.bool_)
@@ -42,10 +45,12 @@ class ReplayBuffer:
 
     def add(self, obs, action, reward, next_obs, done, action_mask, next_action_mask) -> None:
         i = self._idx
-        self.obs[i] = obs
+        packed_obs = self._pack(obs)
+        packed_next = self._pack(next_obs)
+        self.obs[i] = packed_obs
         self.action[i] = action
         self.reward[i] = reward
-        self.next_obs[i] = next_obs
+        self.next_obs[i] = packed_next
         self.done[i] = done
         self.action_mask[i] = action_mask
         self.next_action_mask[i] = next_action_mask
@@ -56,13 +61,26 @@ class ReplayBuffer:
 
     def sample(self, batch_size: int) -> Batch:
         n = len(self)
+        if n == 0 or batch_size <= 0:
+            raise ValueError("sampling requires data and a positive batch size")
         idx = self._rng.integers(0, n, size=batch_size)
         return Batch(
-            obs=self.obs[idx],
+            obs=self._unpack(self.obs, idx),
             action=self.action[idx],
             reward=self.reward[idx],
-            next_obs=self.next_obs[idx],
+            next_obs=self._unpack(self.next_obs, idx),
             done=self.done[idx],
             action_mask=self.action_mask[idx],
             next_action_mask=self.next_action_mask[idx],
         )
+
+    def _pack(self, obs):
+        arr = np.asarray(obs)
+        if arr.shape != self.obs_shape or not np.all((arr == 0) | (arr == 1)):
+            raise ValueError("replay observations must be binary with the configured shape")
+        return np.packbits(arr.reshape(-1).astype(np.uint8))
+
+    def _unpack(self, storage, indices):
+        packed = np.stack([storage[i] for i in indices])
+        bits = np.unpackbits(packed, axis=1, count=int(np.prod(self.obs_shape)))
+        return bits.reshape(len(indices), *self.obs_shape).astype(np.float32)

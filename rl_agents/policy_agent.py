@@ -52,7 +52,7 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             super().__init__(*args, **kwargs)
             self._history: list[np.ndarray] = []
-            self._policy = agent_cls(obs_shape, n_actions)
+            self._policy = agent_cls(obs_shape, n_actions, device=device, inference_only=True)
             self._policy.load(checkpoint_path)
 
         def is_done(self, frames: list[FrameData], latest_frame: FrameData) -> bool:
@@ -94,6 +94,8 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
             obs = self._obs(latest_frame)
             mask = self._mask(latest_frame)
             action_id = self._policy.act(obs, mask, greedy=True)
+            if action_id < len(_SIMPLE_ACTIONS) and _SIMPLE_ACTIONS[action_id] is GameAction.RESET:
+                self._history = []
 
             n_simple = len(_SIMPLE_ACTIONS)
             if action_id < n_simple:

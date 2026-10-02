@@ -62,13 +62,14 @@ def extract_level_records(frames: list, win_levels: int,
     slice it into per-level action counts.
 
     `human_baselines` maps 1-indexed level number -> human baseline action
-    count for this game; missing levels fall back to the largest known
-    baseline (a conservative placeholder -- replace with real data).
+    count for this game; missing or nonpositive baselines are rejected.
     """
     records: list[LevelRecord] = []
     prev_levels_completed = 0
     prev_boundary_idx = 0
-    fallback_baseline = max(human_baselines.values()) if human_baselines else 1
+    missing = set(range(1, win_levels + 1)) - human_baselines.keys()
+    if missing or any(v <= 0 for v in human_baselines.values()):
+        raise ValueError("Positive human baselines are required for every level")
 
     for i, frame in enumerate(frames):
         lc = getattr(frame, "levels_completed", 0)
@@ -78,7 +79,7 @@ def extract_level_records(frames: list, win_levels: int,
                 records.append(LevelRecord(
                     level_index=level_idx,
                     actions_used=max(actions_used, 1),
-                    human_baseline=human_baselines.get(level_idx, fallback_baseline),
+                    human_baseline=human_baselines[level_idx],
                     solved=True,
                 ))
             prev_boundary_idx = i

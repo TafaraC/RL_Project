@@ -1,3 +1,45 @@
+# ARC-AGI-3 RL scaffold
+
+## Local setup and verification
+
+The original supplied ZIP is preserved in base commit `809b718`.
+Its source folders were extracted directly into the repository root.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+Repairs: replay observations are stored lazily as packed bits, preserving
+zero-padded history exactly. The default capacity is now 10,000 transitions
+(625 MiB of observation payload at full capacity, plus metadata and batches),
+versus approximately 97.7 GiB in the original 50,000-transition buffer.
+Only binary observations are accepted. Sampling reconstructs float32 tensors.
+This capacity change must be recorded in experiment configurations.
+
+Training and submission clear history on explicit and game-over resets.
+Automatic reset actions consume budget and incur the training action cost.
+The initial reset remains excluded from the adapter's action counter; verify
+this convention against the submission runner before comparing action budgets.
+The adapter rejects invalid action indices and steps after an episode ends.
+
+DQN checkpoints now contain plain configuration dictionaries and load with
+weights-only deserialization. Older scaffold checkpoints containing pickled
+DQNConfig objects are not supported by this loader. Submission honours the
+requested device and does not allocate a replay buffer. Custom policy classes
+passed to the factory must accept device and inference_only keywords.
+
+Tests cover mocked adapter behaviour, reset observation parity, packed replay,
+a CPU gradient update, checkpoint round trips, and missing scoring inputs.
+Real-game execution, competition runner integration, and the current official
+scoring methodology have not been verified. Local RHAE is a scaffold estimate,
+not an official score; missing human baselines now raise an error.
+The existing evaluation harness still needs genuine seed propagation and
+validated action accounting before it can support multi-seed result claims.
+
+## Original scaffold notes (historical, not independently verified)
+
 # ARC-AGI-3 RL Assignment — working scaffold
 
 COMS4061A/7071A · due 27 Oct 2026, 23:59 SAST

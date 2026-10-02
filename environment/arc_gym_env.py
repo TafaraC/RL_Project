@@ -158,6 +158,9 @@ class ArcAgi3GymEnv(gym.Env):
         seed: Optional[int] = None,
     ) -> None:
         super().__init__()
+        if not 1 <= click_grid <= GRID_SIZE or history_len < 1 or max_actions < 1:
+            raise ValueError("Invalid click grid, history length, or action budget")
+        self._episode_done = False
         self.arc_env = arc_env
         self.game_id = game_id
         self.click_grid = click_grid
@@ -193,6 +196,7 @@ class ArcAgi3GymEnv(gym.Env):
             self._rng = np.random.default_rng(seed)
 
         frame = self._request(GameAction.RESET)
+        self._episode_done = False
         self._action_counter = 0
         self._last_levels_completed = frame.levels_completed
         self._last_frame = frame
@@ -205,7 +209,11 @@ class ArcAgi3GymEnv(gym.Env):
         if self._last_frame is None:
             raise RuntimeError("Call reset() before step().")
 
+        if self._episode_done:
+            raise RuntimeError("Episode ended; call reset() before step()")
         game_action, action_data = self._decode(action)
+        if game_action is GameAction.RESET:
+            self._history = []
         frame = self._request(game_action, action_data)
         self._action_counter += 1
 
@@ -220,12 +228,16 @@ class ArcAgi3GymEnv(gym.Env):
             # point 4.
             frame = self._request(GameAction.RESET)
             self._action_counter += 1
+            reward -= self.reward_config.action_cost
+            self._history = []
+            terminated = frame.state is GameState.WIN
             truncated = self._action_counter >= self.max_actions
 
         self._last_levels_completed = frame.levels_completed
         self._last_frame = frame
         obs = self._push_and_stack(frame)
         info = self._info(frame)
+        self._episode_done = terminated or truncated
         return obs, reward, terminated, truncated, info
 
     # ------------------------------------------------------------------
@@ -245,6 +257,8 @@ class ArcAgi3GymEnv(gym.Env):
         )
 
     def _decode(self, action: int) -> tuple[GameAction, dict]:
+        if not self.action_space.contains(action):
+            raise ValueError(f"Invalid action: {action}")
         if action < self.n_simple:
             return _SIMPLE_ACTIONS[action], {}
         cell = action - self.n_simple
@@ -294,6 +308,7 @@ class ArcAgi3GymEnv(gym.Env):
                 mask[self.n_simple:] = True
         return {
             "action_mask": mask,
+            "actions_used": self._action_counter,
             "levels_completed": frame.levels_completed,
             "win_levels": frame.win_levels,
             "game_id": self.game_id,

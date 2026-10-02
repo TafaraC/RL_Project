@@ -1,0 +1,5 @@
+numpy==2.4.4
+gymnasium==1.3.0
+arcengine==0.9.3
+torch==2.14.1
+pytest==9.1.1
