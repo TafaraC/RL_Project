@@ -5,3 +5,4 @@ __pycache__/
 .env
 checkpoints/
 runs/
+environment_files/
