@@ -44,7 +44,7 @@ def run(arc, args):
     agent = None
     log_path = out / "episodes.csv"
     fields = ["game", "episode", "env_steps_total", "actions_used", "levels_completed",
-              "won", "shaped_return", "epsilon", "wall_s"]
+              "won", "shaped_return", "epsilon", "wall_s", "level_completion_actions"]
     total_steps, t0 = 0, time.time()
     with open(log_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
@@ -64,6 +64,7 @@ def run(arc, args):
                                  DQNConfig(seed=args.seed, device=args.device))
             obs, info = env.reset(seed=args.seed + ep)
             ret, done = 0.0, False
+            prev_levels, level_actions = info["levels_completed"], []
             while not done:
                 mask = info["action_mask"]
                 if args.agent == "random":
@@ -75,6 +76,11 @@ def run(arc, args):
                     # `done` for bootstrapping = true termination only (WIN), not truncation
                     agent.observe(obs, a, r, nobs, term, mask, ninfo["action_mask"])
                     agent.maybe_train()
+                if ninfo["levels_completed"] > prev_levels:
+                    # cumulative actions_used when each new level was completed
+                    # (needed later to compute per-level RHAE efficiency)
+                    level_actions += [ninfo["actions_used"]] * (ninfo["levels_completed"] - prev_levels)
+                    prev_levels = ninfo["levels_completed"]
                 obs, info, ret, done = nobs, ninfo, ret + r, term or trunc
                 total_steps += 1
             w.writerow({
@@ -83,6 +89,7 @@ def run(arc, args):
                 "won": int(info["raw_state"].name == "WIN"), "shaped_return": round(ret, 4),
                 "epsilon": round(agent.epsilon(), 4) if agent else "",
                 "wall_s": round(time.time() - t0, 1),
+                "level_completion_actions": ";".join(map(str, level_actions)),
             })
             f.flush()
             ep += 1
