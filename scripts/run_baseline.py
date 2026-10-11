@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import sys
 import time
 from pathlib import Path
@@ -39,6 +40,7 @@ def make_env(arc, game_id, args, seed):
 def run(arc, args):
     out = Path(args.out_dir) / f"{args.agent}_seed{args.seed}"
     out.mkdir(parents=True, exist_ok=True)
+    (out / "config.json").write_text(json.dumps(vars(args), indent=2))
     rng = np.random.default_rng(args.seed)
     games = args.games.split(",")
     agent = None
@@ -53,7 +55,7 @@ def run(arc, args):
         while True:
             if args.agent == "random" and ep >= args.episodes * len(games):
                 break
-            if args.agent == "dqn" and total_steps >= args.env_steps:
+            if args.agent != "random" and total_steps >= args.env_steps:
                 break
             game = games[ep % len(games)]
             env = make_env(arc, game, args, args.seed + ep)
@@ -62,6 +64,10 @@ def run(arc, args):
                 from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
                 agent = DQNAgent(env.observation_space.shape, env.n_actions,
                                  DQNConfig(seed=args.seed, device=args.device))
+            if args.agent == "ppo" and agent is None:
+                from rl_agents.ppo.ppo_agent import PPOAgent, PPOConfig
+                agent = PPOAgent(env.observation_space.shape, env.n_actions,
+                                 PPOConfig(seed=args.seed, device=args.device))
             obs, info = env.reset(seed=args.seed + ep)
             ret, done = 0.0, False
             prev_levels, level_actions = info["levels_completed"], []
@@ -74,7 +80,8 @@ def run(arc, args):
                 nobs, r, term, trunc, ninfo = env.step(a)
                 if agent is not None:
                     # `done` for bootstrapping = true termination only (WIN), not truncation
-                    agent.observe(obs, a, r, nobs, term, mask, ninfo["action_mask"])
+                    agent.observe(obs, a, r, nobs, term, mask, ninfo["action_mask"],
+                                  **({"truncated": trunc} if args.agent == "ppo" else {}))
                     agent.maybe_train()
                 if ninfo["levels_completed"] > prev_levels:
                     # cumulative actions_used when each new level was completed
@@ -87,20 +94,22 @@ def run(arc, args):
                 "game": game, "episode": ep, "env_steps_total": total_steps,
                 "actions_used": info["actions_used"], "levels_completed": info["levels_completed"],
                 "won": int(info["raw_state"].name == "WIN"), "shaped_return": round(ret, 4),
-                "epsilon": round(agent.epsilon(), 4) if agent else "",
+                "epsilon": round(agent.epsilon(), 4) if args.agent == "dqn" else "",
                 "wall_s": round(time.time() - t0, 1),
                 "level_completion_actions": ";".join(map(str, level_actions)),
             })
             f.flush()
             ep += 1
     if agent is not None:
-        agent.save(str(out / "dqn.pt"))
+        if args.agent == "ppo":
+            agent.maybe_train(force=True)
+        agent.save(str(out / f"{args.agent}.pt"))
     print(f"Wrote {log_path}")
 
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("--agent", choices=["random", "dqn"], required=True)
+    p.add_argument("--agent", choices=["random", "dqn", "ppo"], required=True)
     p.add_argument("--games", required=True, help="comma-separated short game ids, e.g. ls20,vc33")
     p.add_argument("--episodes", type=int, default=20, help="random agent: episodes per game")
     p.add_argument("--env-steps", type=int, default=50_000, help="dqn: total environment steps")

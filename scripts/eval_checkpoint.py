@@ -42,9 +42,14 @@ def evaluate(arc, args, agent=None):
             for ep in range(args.episodes):
                 env = make_env(arc, game, args, args.seed + ep)
                 if agent is None:
-                    from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
-                    agent = DQNAgent(env.observation_space.shape, env.n_actions,
-                                     DQNConfig(device=args.device), inference_only=True)
+                    if getattr(args, "agent", "dqn") == "ppo":
+                        from rl_agents.ppo.ppo_agent import PPOAgent
+                        agent = PPOAgent(env.observation_space.shape, env.n_actions,
+                                         device=args.device, inference_only=True)
+                    else:
+                        from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
+                        agent = DQNAgent(env.observation_space.shape, env.n_actions,
+                                         DQNConfig(device=args.device), inference_only=True)
                     agent.load(args.checkpoint)
                 obs, info = env.reset(seed=args.seed + ep)
                 done, prev, level_actions = False, info["levels_completed"], []
@@ -79,6 +84,7 @@ def evaluate(arc, args, agent=None):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
+    p.add_argument("--agent", choices=["dqn", "ppo"], default="dqn")
     p.add_argument("--checkpoint", required=True)
     p.add_argument("--games", required=True)
     p.add_argument("--episodes", type=int, default=20)

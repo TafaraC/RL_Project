@@ -161,3 +161,57 @@ ARC-AGI-3-Agents framework already owns a top-level `agents` package.
    useful thing is a `make play-local` smoke test on your machine, or
    whether I should build further (e.g. the PPO baseline, ablation
    configs) against the same verified interface while you sort that out.
+
+## PPO baseline (second learning algorithm)
+
+A custom PyTorch PPO baseline is available in `rl_agents/ppo/ppo_agent.py`.
+It uses the same CNN feature architecture, stacked binary observations,
+legal-action mask and training rewards as DQN. There is no recurrent memory,
+novelty bonus, curriculum or other improvement yet.
+
+The actor samples a masked categorical policy during training; a value output
+estimates discounted return. Generalized advantage estimation uses gamma 0.99
+and lambda 0.95. Each 128-transition rollout is updated for four epochs with
+32-transition minibatches. The objective is the negative clipped surrogate
+(ratio clip 0.2), plus 0.5 times mean squared value error, minus 0.01 times
+policy entropy. Adam uses learning rate 0.0003; gradient norm is capped at 0.5.
+Old action probabilities and masks remain fixed during the update. Advantages
+are normalized over the rollout. Rollout observations are bit-packed and only
+minibatches are expanded, limiting memory use.
+
+True terminal states have zero bootstrap value. Action-budget truncations
+bootstrap from the final observation but stop GAE recursion across resets.
+Soft game-over resets remain within the adapter's episode, as in DQN.
+Rollouts may span episodes; weights and optimizer persist throughout training.
+A partial final rollout is updated before saving. Checkpoints are for inference,
+not exact training resumption (optimizer, RNG and rollout are not saved).
+Evaluation uses frozen weights and greedy actions by default, matching the
+existing DQN comparison. This differs from PPO's stochastic training policy;
+report the evaluation choice explicitly. No improvement claims are made yet.
+
+Run each development game separately, with seeds 0, 1 and 2, using unique output
+folders so checkpoints cannot overwrite another game's results:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_baseline.py --agent ppo --games ft09 --env-steps 50000 --seed 0 --max-actions 1000 --out-dir runs_ppo_ft09
+.\.venv\Scripts\python.exe scripts\eval_checkpoint.py --agent ppo --checkpoint runs_ppo_ft09\ppo_seed0\ppo.pt --games ft09 --episodes 20 --seed 100 --max-actions 1000 --out-dir eval_ppo_ft09 --tag seed0_greedy
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+Repeat on `dc22`, `g50t`, and `m0r0`; keep held-out games untouched until designs
+are frozen. The existing runner finishes the last episode, so actual training
+steps can exceed the requested threshold and must be read from the CSV. Its
+step count excludes internal reset calls, while actions_used includes them.
+The adapter seed does not seed the underlying ARC engine: do not claim separate
+engine layouts from different evaluation seeds. CSV returns are shaped training
+signals, not official ARC scores. Config arguments are written to config.json;
+PPO hyperparameters and architecture dimensions are also saved in ppo.pt.
+
+The same submission factory accepts PPOAgent in place of DQNAgent; its default
+80-action limit still needs setting to the agreed submission budget. Live ARC
+and Kaggle integration have not been validated by the PPO mock tests.
+
+Algorithm reference: Schulman et al., *Proximal Policy Optimization Algorithms*
+(2017), https://arxiv.org/abs/1707.06347. This implementation is project code
+using PyTorch and reusing the scaffold CNN; confirm PPO was not covered in your
+course before presenting it as the unfamiliar algorithm.
