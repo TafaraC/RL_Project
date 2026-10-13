@@ -215,3 +215,12 @@ Algorithm reference: Schulman et al., *Proximal Policy Optimization Algorithms*
 (2017), https://arxiv.org/abs/1707.06347. This implementation is project code
 using PyTorch and reusing the scaffold CNN; confirm PPO was not covered in your
 course before presenting it as the unfamiliar algorithm.
+
+### GPU training and recovery
+
+Install `requirements-cuda.txt` for the CUDA-enabled PyTorch build. Training now
+defaults to `--device cuda`; use `--device cpu` explicitly for CPU runs. The experiment
+runner uses cached offline games to avoid repeated API metadata downloads and checks
+CUDA availability before launching jobs. Use `--training-only` to defer evaluation,
+and `--games` / `--out-dir` to keep restarted GPU runs separate from completed CPU runs.
+See `reports/PPO_BASELINE_VALIDATION.md` for the failure diagnosis and reference comparison.

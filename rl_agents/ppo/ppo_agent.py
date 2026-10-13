@@ -89,7 +89,7 @@ class PPOAgent:
             return torch.as_tensor(x, dtype=dtype, device=self.device)
         actions, masks = tensor(actions, torch.long), tensor(np.stack(masks), torch.bool)
         old_logps, advantages, returns = tensor(logps), tensor(advantages), tensor(returns)
-        losses = []
+        losses, policy_losses, value_losses, entropies, kls, clips = [], [], [], [], [], []
         for _ in range(self.cfg.epochs):
             order = self.rng.permutation(len(self.rollout))
             for start in range(0, len(order), self.cfg.batch_size):
@@ -98,14 +98,26 @@ class PPOAgent:
                 dist, value = self._forward(tensor(obs), masks[idx])
                 ratio = (dist.log_prob(actions[idx]) - old_logps[idx]).exp()
                 surrogate = torch.minimum(ratio * advantages[idx], ratio.clamp(1-self.cfg.clip_range, 1+self.cfg.clip_range) * advantages[idx])
-                loss = -surrogate.mean() + self.cfg.value_coef * (value-returns[idx]).square().mean() - self.cfg.entropy_coef * dist.entropy().mean()
+                policy_loss = -surrogate.mean()
+                value_loss = (value-returns[idx]).square().mean()
+                entropy = dist.entropy().mean()
+                loss = policy_loss + self.cfg.value_coef * value_loss - self.cfg.entropy_coef * entropy
+                if not torch.isfinite(loss):
+                    raise FloatingPointError('Nonfinite PPO loss')
+                policy_losses.append(policy_loss.item())
+                value_losses.append(value_loss.item())
+                entropies.append(entropy.item())
+                kls.append(((ratio - 1) - ratio.log()).mean().item())
+                clips.append(((ratio-1).abs() > self.cfg.clip_range).float().mean().item())
                 self.optimizer.zero_grad()
                 loss.backward()
                 nn.utils.clip_grad_norm_(self.network.parameters(), self.cfg.grad_clip)
                 self.optimizer.step()
                 losses.append(loss.item())
         self.rollout.clear()
-        return {'loss': float(np.mean(losses))}
+        return {key: float(np.mean(data)) for key, data in zip(
+            ['loss', 'policy_loss', 'value_loss', 'entropy', 'approx_kl', 'clip_fraction'],
+            [losses, policy_losses, value_losses, entropies, kls, clips])}
 
     def save(self, path):
         torch.save({'algorithm': 'ppo', 'network': self.network.state_dict(), 'cfg': asdict(self.cfg),

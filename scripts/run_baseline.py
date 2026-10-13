@@ -30,17 +30,32 @@ from environment.arc_gym_env import ArcAgi3GymEnv  # noqa: E402
 
 
 def make_env(arc, game_id, args, seed):
+    raw_env = arc.make(game_id, render_mode=None)
+    if raw_env is None:
+        raise RuntimeError(f"Could not load {game_id}; check cached files or network access")
     return ArcAgi3GymEnv(
-        arc.make(game_id, render_mode=None), game_id=game_id,
+        raw_env, game_id=game_id,
         click_grid=args.click_grid, history_len=args.history_len,
         max_actions=args.max_actions, seed=seed,
     )
 
 
 def run(arc, args):
+    if args.device.startswith('cuda'):
+        import torch
+        if not torch.cuda.is_available():
+            raise RuntimeError('CUDA requested but unavailable; install requirements-cuda.txt')
     out = Path(args.out_dir) / f"{args.agent}_seed{args.seed}"
     out.mkdir(parents=True, exist_ok=True)
     (out / "config.json").write_text(json.dumps(vars(args), indent=2))
+    import platform
+    import importlib.metadata
+    runtime = {'python': platform.python_version(), 'device': args.device,
+               'packages': {name: importlib.metadata.version(name) for name in ('torch', 'numpy', 'arcengine', 'arc-agi')}}
+    if args.device.startswith('cuda'):
+        runtime['gpu'] = torch.cuda.get_device_name()
+        runtime['cuda_runtime'] = torch.version.cuda
+    (out / 'runtime.json').write_text(json.dumps(runtime, indent=2))
     rng = np.random.default_rng(args.seed)
     games = args.games.split(",")
     agent = None
@@ -82,7 +97,10 @@ def run(arc, args):
                     # `done` for bootstrapping = true termination only (WIN), not truncation
                     agent.observe(obs, a, r, nobs, term, mask, ninfo["action_mask"],
                                   **({"truncated": trunc} if args.agent == "ppo" else {}))
-                    agent.maybe_train()
+                    metrics = agent.maybe_train()
+                    if metrics is not None and args.agent == 'ppo':
+                        with (out / 'updates.jsonl').open('a') as updates:
+                            updates.write(json.dumps({'env_steps': total_steps + 1, **metrics}) + chr(10))
                 if ninfo["levels_completed"] > prev_levels:
                     # cumulative actions_used when each new level was completed
                     # (needed later to compute per-level RHAE efficiency)
@@ -117,9 +135,10 @@ if __name__ == "__main__":
     p.add_argument("--max-actions", type=int, default=80)
     p.add_argument("--click-grid", type=int, default=8)
     p.add_argument("--history-len", type=int, default=4)
-    p.add_argument("--device", default="cpu")
+    p.add_argument("--device", default="cuda")
+    p.add_argument("--offline", action="store_true", help="Use cached games without API requests")
     p.add_argument("--out-dir", default="runs")
     args = p.parse_args()
     import arc_agi
     from arc_agi import OperationMode
-    run(arc_agi.Arcade(operation_mode=OperationMode.NORMAL), args)
+    run(arc_agi.Arcade(operation_mode=OperationMode.OFFLINE if args.offline else OperationMode.NORMAL), args)

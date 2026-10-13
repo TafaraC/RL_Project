@@ -1,4 +1,5 @@
 """Run the fixed PPO development protocol sequentially; resume completed jobs."""
+import argparse
 import csv
 import json
 import os
@@ -11,13 +12,19 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'runs' / 'ppo_baseline'
 
 
-def main():
+def main(training_only=False, device="cuda", games=None, out_dir=None):
+    global OUT
+    if out_dir is not None:
+        OUT = Path(out_dir).resolve()
+    import torch
+    if device.startswith("cuda") and not torch.cuda.is_available():
+        raise RuntimeError("CUDA is required for this run but unavailable")
     OUT.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ, OMP_NUM_THREADS='2', MKL_NUM_THREADS='2')
-    status = {'protocol': {'games': ['ft09', 'dc22', 'g50t', 'm0r0'], 'seeds': [0, 1, 2],
+    status = {'protocol': {'games': games or ['ft09', 'dc22', 'g50t', 'm0r0'], 'seeds': [0, 1, 2],
                            'training_steps': 50000, 'max_actions': 1000,
                            'eval_episodes': 20, 'eval_seed': 100, 'eval_epsilon': 0,
-                           'device': 'cpu', 'threads': 2}, 'completed': []}
+                           'device': device, 'threads': 2, 'training_only': training_only}, 'completed': []}
     def save():
         status['updated_utc'] = datetime.now(timezone.utc).isoformat()
         temporary = OUT / 'status.tmp'
@@ -35,11 +42,13 @@ def main():
                 commands = [
                     ('train', ['scripts/run_baseline.py', '--agent', 'ppo', '--games', game,
                                '--env-steps', '50000', '--seed', str(seed), '--max-actions', '1000',
-                               '--out-dir', str(base)]),
+                               '--out-dir', str(base), '--device', device, '--offline']),
                     ('evaluate', ['scripts/eval_checkpoint.py', '--agent', 'ppo', '--checkpoint', str(checkpoint),
                                   '--games', game, '--episodes', '20', '--seed', '100', '--max-actions', '1000',
-                                  '--out-dir', str(base / 'eval'), '--tag', f'seed{seed}'])]
+                                  '--out-dir', str(base / 'eval'), '--tag', f'seed{seed}', '--device', device])]
                 for phase, command in commands:
+                    if training_only and phase == 'evaluate':
+                        continue
                     if phase == 'train' and checkpoint.exists():
                         continue
                     status.update(state='running', game=game, seed=seed, phase=phase)
@@ -50,7 +59,12 @@ def main():
                         status.update(state='failed', returncode=result.returncode)
                         save()
                         raise SystemExit(result.returncode)
-                marker.touch()
+                if not training_only:
+                    marker.touch()
+            if training_only:
+                status['completed'].append(f'{game}/seed{seed}')
+                save()
+                continue
             rows = list(csv.DictReader((evaluation / 'episodes.csv').open()))
             summaries.append({'game': game, 'training_seed': seed, 'episodes': len(rows),
                               'episodes_with_level': sum(int(r['levels_completed']) > 0 for r in rows),
@@ -68,4 +82,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--training-only", action="store_true")
+    parser.add_argument('--device', default='cuda')
+    parser.add_argument('--games', default='ft09,dc22,g50t,m0r0')
+    parser.add_argument('--out-dir', default=str(OUT))
+    args = parser.parse_args()
+    main(training_only=args.training_only, device=args.device,
+         games=args.games.split(','), out_dir=args.out_dir)

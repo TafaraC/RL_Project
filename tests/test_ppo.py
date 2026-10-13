@@ -55,3 +55,36 @@ def test_runner_and_evaluator(tmp_path):
     args.eval_epsilon = 0.
     evaluate(Arcade(), args)
     assert (tmp_path / 'evaluation' / 'episodes.csv').exists()
+
+@pytest.mark.parametrize('device', ['cpu', 'cuda'])
+def test_policy_learns_rewarded_action(device):
+    if device == 'cuda' and not torch.cuda.is_available():
+        pytest.skip('CUDA unavailable')
+    torch.set_num_threads(1)
+    agent = PPOAgent((16, 64, 64), 3, PPOConfig(rollout_steps=32, batch_size=16, epochs=2), device=device)
+    obs = np.zeros((16, 64, 64), dtype=np.float32)
+    obs[0] = 1
+    mask = np.array([True, True, False])
+    def probability():
+        with torch.no_grad():
+            dist, _ = agent._forward(torch.tensor(obs, device=device).unsqueeze(0),
+                                     torch.tensor(mask, device=device).unsqueeze(0))
+            return dist.probs[0, 1].item()
+    before = probability()
+    for _ in range(3):
+        for _ in range(32):
+            action = agent.act(obs, mask)
+            assert action != 2
+            agent.observe(obs, action, float(action == 1), obs, True, mask, mask)
+        metrics = agent.maybe_train()
+        assert all(np.isfinite(value) for value in metrics.values())
+    assert probability() > before + .05
+
+
+def test_missing_game_has_clear_error():
+    from scripts.run_baseline import make_env
+    from argparse import Namespace
+    class Missing:
+        def make(self, *args, **kwargs): return None
+    with pytest.raises(RuntimeError, match='Could not load'):
+        make_env(Missing(), 'missing', Namespace(), 0)
