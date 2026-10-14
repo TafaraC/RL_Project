@@ -93,6 +93,7 @@ if __name__ == "__main__":
     p.add_argument("--click-grid", type=int, default=8)
     p.add_argument("--history-len", type=int, default=4)
     p.add_argument("--device", default="cpu")
+    p.add_argument("--offline", action="store_true")
     p.add_argument("--out-dir", default="eval")
     p.add_argument("--eval-epsilon", type=float, default=0.0,
                    help="probability of a random legal action at evaluation time (0 = purely greedy)")
@@ -100,4 +101,4 @@ if __name__ == "__main__":
     args = p.parse_args()
     import arc_agi
     from arc_agi import OperationMode
-    evaluate(arc_agi.Arcade(operation_mode=OperationMode.NORMAL), args)
+    evaluate(arc_agi.Arcade(operation_mode=OperationMode.OFFLINE if args.offline else OperationMode.NORMAL), args)
