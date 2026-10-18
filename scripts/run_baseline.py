@@ -77,8 +77,10 @@ def run(arc, args):
             if args.agent == "dqn" and agent is None:
                 import torch  # noqa: F401  (only needed for the learning baseline)
                 from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
-                agent = DQNAgent(env.observation_space.shape, env.n_actions,
-                                 DQNConfig(seed=args.seed, device=args.device))
+                cfg_kwargs = {"seed": args.seed, "device": args.device}
+                if args.buffer_capacity is not None:
+                    cfg_kwargs["buffer_capacity"] = args.buffer_capacity
+                agent = DQNAgent(env.observation_space.shape, env.n_actions, DQNConfig(**cfg_kwargs))
             if args.agent == "ppo" and agent is None:
                 from rl_agents.ppo.ppo_agent import PPOAgent, PPOConfig
                 agent = PPOAgent(env.observation_space.shape, env.n_actions,
@@ -135,6 +137,9 @@ if __name__ == "__main__":
     p.add_argument("--max-actions", type=int, default=80)
     p.add_argument("--click-grid", type=int, default=8)
     p.add_argument("--history-len", type=int, default=4)
+    p.add_argument("--buffer-capacity", type=int, default=None,
+                   help="DQN replay buffer size in transitions (default: DQNConfig default, 10,000). "
+                        "50,000 needs about 3 GiB of RAM with bit-packed observations")
     p.add_argument("--device", default="cuda")
     p.add_argument("--offline", action="store_true", help="Use cached games without API requests")
     p.add_argument("--out-dir", default="runs")

@@ -122,6 +122,39 @@ class RewardConfig:
     action_cost: float = 0.002
 
 
+def frame_key(grid) -> int:
+    """Hash of a 64x64 grid, used to recognise a screen we have seen before."""
+    return hash(np.asarray(grid, dtype=np.int8).tobytes())
+
+
+class NoopMemory:
+    """Remembers, per screen, which actions were tried there and changed nothing.
+
+    Improvement 2 (memory of repeated no-change actions). Shared by the
+    training adapter and the submission agent so both behave identically.
+    The memory lasts for one episode / one game attempt only and is never
+    learned or saved. If every legal action in a screen is known to do
+    nothing, the mask is returned unchanged (the agent must still act).
+    """
+
+    def __init__(self) -> None:
+        self._banned: dict[int, set[int]] = {}
+
+    def clear(self) -> None:
+        self._banned = {}
+
+    def record(self, key: int, action: int) -> None:
+        self._banned.setdefault(key, set()).add(int(action))
+
+    def apply(self, mask: np.ndarray, key: int) -> np.ndarray:
+        banned = self._banned.get(key)
+        if not banned:
+            return mask
+        new = mask.copy()
+        new[list(banned)] = False
+        return new if new.any() else mask
+
+
 class ArcAgi3GymEnv(gym.Env):
     """gymnasium.Env wrapper around one ARC-AGI-3 game.
 
@@ -156,6 +189,9 @@ class ArcAgi3GymEnv(gym.Env):
         max_actions: int = 80,
         reward_config: Optional[RewardConfig] = None,
         seed: Optional[int] = None,
+        novelty_bonus: float = 0.0,
+        novelty_cap: float = 0.5,
+        noop_masking: bool = False,
     ) -> None:
         super().__init__()
         if not 1 <= click_grid <= GRID_SIZE or history_len < 1 or max_actions < 1:
@@ -185,6 +221,17 @@ class ArcAgi3GymEnv(gym.Env):
         self._last_levels_completed = 0
         self._last_frame: Optional[FrameData] = None
 
+        # Improvement 1 (training reward only): one-off bonus the FIRST time a screen is
+        # seen in an episode, capped per episode so animated screens cannot be farmed.
+        # Improvement 2 (decision-time memory): mask actions already known to change nothing
+        # on the current screen. Both are OFF by default so baselines stay reproducible.
+        self.novelty_bonus = float(novelty_bonus)
+        self.novelty_cap = float(novelty_cap)
+        self.noop_masking = bool(noop_masking)
+        self._visited: set[int] = set()
+        self._novelty_total = 0.0
+        self._noop_memory = NoopMemory()
+
     # ------------------------------------------------------------------
     # gymnasium.Env API
     # ------------------------------------------------------------------
@@ -201,6 +248,9 @@ class ArcAgi3GymEnv(gym.Env):
         self._last_levels_completed = frame.levels_completed
         self._last_frame = frame
         self._history = []
+        self._visited = {self._key(frame)}
+        self._novelty_total = 0.0
+        self._noop_memory.clear()
         obs = self._push_and_stack(frame)
         info = self._info(frame)
         return obs, info
@@ -214,8 +264,11 @@ class ArcAgi3GymEnv(gym.Env):
         game_action, action_data = self._decode(action)
         if game_action is GameAction.RESET:
             self._history = []
+        prev_key = self._key(self._last_frame)
         frame = self._request(game_action, action_data)
         self._action_counter += 1
+        if self.noop_masking and self._key(frame) == prev_key:
+            self._noop_memory.record(prev_key, action)
 
         reward = self._reward(frame)
         terminated = frame.state is GameState.WIN
@@ -232,6 +285,14 @@ class ArcAgi3GymEnv(gym.Env):
             self._history = []
             terminated = frame.state is GameState.WIN
             truncated = self._action_counter >= self.max_actions
+
+        if self.novelty_bonus > 0.0:
+            key = self._key(frame)
+            if key not in self._visited:
+                self._visited.add(key)
+                bonus = min(self.novelty_bonus, max(0.0, self.novelty_cap - self._novelty_total))
+                reward += bonus
+                self._novelty_total += bonus
 
         self._last_levels_completed = frame.levels_completed
         self._last_frame = frame
@@ -286,6 +347,10 @@ class ArcAgi3GymEnv(gym.Env):
                    + self._history)
         return np.concatenate(stacked, axis=0)
 
+    @staticmethod
+    def _key(frame: FrameData) -> int:
+        return frame_key(frame.frame[-1]) if frame.frame else 0
+
     def _reward(self, frame: FrameData) -> float:
         rc = self.reward_config
         r = -rc.action_cost
@@ -306,8 +371,11 @@ class ArcAgi3GymEnv(gym.Env):
                 mask[_SIMPLE_ACTIONS.index(legal_action)] = True
             elif legal_action is GameAction.ACTION6:
                 mask[self.n_simple:] = True
+        if self.noop_masking:
+            mask = self._noop_memory.apply(mask, self._key(frame))
         return {
             "action_mask": mask,
+            "novelty_bonus_total": self._novelty_total,
             "actions_used": self._action_counter,
             "levels_completed": frame.levels_completed,
             "win_levels": frame.win_levels,

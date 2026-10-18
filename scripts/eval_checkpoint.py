@@ -32,7 +32,7 @@ def evaluate(arc, args, agent=None):
     games = args.games.split(",")
     fields = ["game", "episode", "actions_used", "levels_completed", "won",
               "level_completion_actions", "wall_s", "n_distinct_actions", "noop_frac",
-              "top_action", "top_action_frac"]
+              "top_action", "top_action_frac", "unique_frames"]
     t0 = time.time()
     rng = np.random.default_rng(args.seed)
     with open(out / "episodes.csv", "w", newline="") as f:
@@ -54,17 +54,19 @@ def evaluate(arc, args, agent=None):
                 obs, info = env.reset(seed=args.seed + ep)
                 done, prev, level_actions = False, info["levels_completed"], []
                 counts, noops, steps = Counter(), 0, 0
+                seen = {hash(obs[-16:].tobytes())}  # distinct screens visited (game-agnostic progress proxy)
                 while not done:
                     if args.eval_epsilon > 0 and rng.random() < args.eval_epsilon:
                         a = int(rng.choice(np.flatnonzero(info["action_mask"])))
                     else:
-                        a = agent.act(obs, info["action_mask"], greedy=True)
+                        a = agent.act(obs, info["action_mask"], greedy=not args.stochastic)
                     prev_obs = obs
                     obs, _, term, trunc, info = env.step(a)
                     counts[a] += 1
                     steps += 1
                     # newest grid = last 16 channels of the stacked observation
                     noops += int(np.array_equal(obs[-16:], prev_obs[-16:]))
+                    seen.add(hash(obs[-16:].tobytes()))
                     if info["levels_completed"] > prev:
                         level_actions += [info["actions_used"]] * (info["levels_completed"] - prev)
                         prev = info["levels_completed"]
@@ -77,7 +79,8 @@ def evaluate(arc, args, agent=None):
                             "n_distinct_actions": len(counts),
                             "noop_frac": round(noops / max(steps, 1), 3),
                             "top_action": counts.most_common(1)[0][0] if counts else "",
-                            "top_action_frac": round(counts.most_common(1)[0][1] / max(steps, 1), 3) if counts else ""})
+                            "top_action_frac": round(counts.most_common(1)[0][1] / max(steps, 1), 3) if counts else "",
+                            "unique_frames": len(seen)})
                 f.flush()
     print(f"Wrote {out / 'episodes.csv'}")
 
@@ -97,8 +100,13 @@ if __name__ == "__main__":
     p.add_argument("--out-dir", default="eval")
     p.add_argument("--eval-epsilon", type=float, default=0.0,
                    help="probability of a random legal action at evaluation time (0 = purely greedy)")
+    p.add_argument("--stochastic", action="store_true",
+                   help="PPO only: sample actions from the policy instead of taking the argmax")
     p.add_argument("--tag", required=True)
     args = p.parse_args()
+    if args.stochastic and args.agent != "ppo":
+        raise SystemExit("--stochastic is only valid for --agent ppo (DQN has no action distribution; "
+                         "use --eval-epsilon for a stochastic DQN evaluation)")
     import arc_agi
     from arc_agi import OperationMode
     evaluate(arc_agi.Arcade(operation_mode=OperationMode.OFFLINE if args.offline else OperationMode.NORMAL), args)
