@@ -31,11 +31,13 @@ from typing import Any
 import numpy as np
 from arcengine import FrameData, GameAction, GameState
 
-from environment.arc_gym_env import GRID_SIZE, N_COLORS, SIMPLE_ACTIONS as _SIMPLE_ACTIONS
+from environment.arc_gym_env import (GRID_SIZE, N_COLORS, SIMPLE_ACTIONS as _SIMPLE_ACTIONS,
+                                     NoopMemory, frame_key)
 
 
 def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8,
-                             history_len: int = 4, device: str = "cpu"):
+                             history_len: int = 4, device: str = "cpu",
+                             noop_masking: bool = False):
     """Returns an `agents.agent.Agent` subclass driven by a trained policy.
 
     `agent_cls` is e.g. `rl_agents.dqn.dqn_agent.DQNAgent` -- anything exposing
@@ -52,6 +54,10 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             super().__init__(*args, **kwargs)
             self._history: list[np.ndarray] = []
+            # Improvement 2: per-game-attempt memory of actions that changed nothing on a screen.
+            self._noop = NoopMemory()
+            self._prev_key = None
+            self._prev_action = None
             self._policy = agent_cls(obs_shape, n_actions, device=device, inference_only=True)
             self._policy.load(checkpoint_path)
 
@@ -89,11 +95,19 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
         def choose_action(self, frames: list[FrameData], latest_frame: FrameData) -> GameAction:
             if latest_frame.state in (GameState.NOT_PLAYED, GameState.GAME_OVER):
                 self._history = []
+                self._prev_key = None
                 return GameAction.RESET
 
             obs = self._obs(latest_frame)
             mask = self._mask(latest_frame)
+            if noop_masking:
+                key = frame_key(latest_frame.frame[-1]) if latest_frame.frame else 0
+                if self._prev_key is not None and key == self._prev_key:
+                    self._noop.record(self._prev_key, self._prev_action)
+                mask = self._noop.apply(mask, key)
             action_id = self._policy.act(obs, mask, greedy=True)
+            if noop_masking:
+                self._prev_key, self._prev_action = key, action_id
             if action_id < len(_SIMPLE_ACTIONS) and _SIMPLE_ACTIONS[action_id] is GameAction.RESET:
                 self._history = []
 

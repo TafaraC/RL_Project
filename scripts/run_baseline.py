@@ -37,6 +37,9 @@ def make_env(arc, game_id, args, seed):
         raw_env, game_id=game_id,
         click_grid=args.click_grid, history_len=args.history_len,
         max_actions=args.max_actions, seed=seed,
+        novelty_bonus=getattr(args, "novelty_bonus", 0.0),
+        novelty_cap=getattr(args, "novelty_cap", 0.5),
+        noop_masking=getattr(args, "noop_masking", False),
     )
 
 
@@ -61,7 +64,7 @@ def run(arc, args):
     agent = None
     log_path = out / "episodes.csv"
     fields = ["game", "episode", "env_steps_total", "actions_used", "levels_completed",
-              "won", "shaped_return", "epsilon", "wall_s", "level_completion_actions"]
+              "won", "shaped_return", "epsilon", "wall_s", "level_completion_actions", "novelty_bonus_total"]
     total_steps, t0 = 0, time.time()
     with open(log_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
@@ -78,7 +81,7 @@ def run(arc, args):
                 import torch  # noqa: F401  (only needed for the learning baseline)
                 from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
                 cfg_kwargs = {"seed": args.seed, "device": args.device}
-                if args.buffer_capacity is not None:
+                if getattr(args, "buffer_capacity", None) is not None:
                     cfg_kwargs["buffer_capacity"] = args.buffer_capacity
                 agent = DQNAgent(env.observation_space.shape, env.n_actions, DQNConfig(**cfg_kwargs))
             if args.agent == "ppo" and agent is None:
@@ -117,6 +120,7 @@ def run(arc, args):
                 "epsilon": round(agent.epsilon(), 4) if args.agent == "dqn" else "",
                 "wall_s": round(time.time() - t0, 1),
                 "level_completion_actions": ";".join(map(str, level_actions)),
+                "novelty_bonus_total": round(info.get("novelty_bonus_total", 0.0), 4),
             })
             f.flush()
             ep += 1
@@ -137,6 +141,12 @@ if __name__ == "__main__":
     p.add_argument("--max-actions", type=int, default=80)
     p.add_argument("--click-grid", type=int, default=8)
     p.add_argument("--history-len", type=int, default=4)
+    p.add_argument("--novelty-bonus", type=float, default=0.0,
+                   help="Improvement 1: reward for the first visit to each screen per episode (0 = off)")
+    p.add_argument("--novelty-cap", type=float, default=0.5,
+                   help="max total novelty reward per episode")
+    p.add_argument("--noop-masking", action="store_true",
+                   help="Improvement 2: mask actions already known to change nothing on this screen")
     p.add_argument("--buffer-capacity", type=int, default=None,
                    help="DQN replay buffer size in transitions (default: DQNConfig default, 10,000). "
                         "50,000 needs about 3 GiB of RAM with bit-packed observations")

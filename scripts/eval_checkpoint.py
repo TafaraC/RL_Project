@@ -56,10 +56,10 @@ def evaluate(arc, args, agent=None):
                 counts, noops, steps = Counter(), 0, 0
                 seen = {hash(obs[-16:].tobytes())}  # distinct screens visited (game-agnostic progress proxy)
                 while not done:
-                    if args.eval_epsilon > 0 and rng.random() < args.eval_epsilon:
+                    if getattr(args, "eval_epsilon", 0.0) > 0 and rng.random() < args.eval_epsilon:
                         a = int(rng.choice(np.flatnonzero(info["action_mask"])))
                     else:
-                        a = agent.act(obs, info["action_mask"], greedy=not args.stochastic)
+                        a = agent.act(obs, info["action_mask"], greedy=not getattr(args, "stochastic", False))
                     prev_obs = obs
                     obs, _, term, trunc, info = env.step(a)
                     counts[a] += 1
@@ -100,6 +100,8 @@ if __name__ == "__main__":
     p.add_argument("--out-dir", default="eval")
     p.add_argument("--eval-epsilon", type=float, default=0.0,
                    help="probability of a random legal action at evaluation time (0 = purely greedy)")
+    p.add_argument("--noop-masking", action="store_true",
+                   help="must match how the checkpoint was trained (Improvement 2)")
     p.add_argument("--stochastic", action="store_true",
                    help="PPO only: sample actions from the policy instead of taking the argmax")
     p.add_argument("--tag", required=True)

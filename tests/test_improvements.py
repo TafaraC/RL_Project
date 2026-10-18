@@ -106,6 +106,85 @@ def test_noop_memory_apply_never_returns_empty_mask():
     assert m.apply(mask, 7).tolist() == [False, True, False]
 
 
+
+
+# ---- end-to-end checks that the flags are actually wired into the scripts ----
+def test_cli_flags_exist_in_scripts():
+    import subprocess
+    root = Path(__file__).resolve().parents[1]
+    expected = {
+        "run_baseline.py": ["--novelty-bonus", "--novelty-cap", "--noop-masking", "--buffer-capacity"],
+        "eval_checkpoint.py": ["--noop-masking", "--stochastic", "--eval-epsilon"],
+        "scan_games.py": ["--episodes", "--games"],
+    }
+    for script, flags in expected.items():
+        out = subprocess.run([sys.executable, str(root / "scripts" / script), "--help"],
+                             capture_output=True, text=True, cwd=root).stdout
+        for flag in flags:
+            assert flag in out, f"{script} is missing {flag}"
+
+
+def test_runner_logs_novelty_bonus():
+    import csv
+    import tempfile
+    from argparse import Namespace
+    from scripts.run_baseline import run
+
+    class Arcade:
+        def make(self, *a, **k):
+            return ScriptedArc(list(range(16)))
+
+    def run_once(bonus):
+        with tempfile.TemporaryDirectory() as d:
+            args = Namespace(agent="random", out_dir=d, seed=0, games="mock", episodes=1, env_steps=0,
+                             device="cpu", click_grid=1, history_len=1, max_actions=10,
+                             novelty_bonus=bonus, novelty_cap=0.5, noop_masking=False)
+            run(Arcade(), args)
+            return float(next(csv.DictReader(open(Path(d) / "random_seed0" / "episodes.csv")))["novelty_bonus_total"])
+
+    assert run_once(0.0) == 0.0
+    assert run_once(0.05) > 0.0
+
+
+def test_submission_agent_noop_memory_breaks_the_loop():
+    import types
+    from rl_agents.policy_agent import make_policy_agent_class
+    mod = types.ModuleType("agents.agent")
+
+    class Agent:
+        def __init__(self, *a, **k):
+            pass
+
+    mod.Agent = Agent
+    saved = {k: sys.modules.get(k) for k in ("agents", "agents.agent")}
+    sys.modules["agents"], sys.modules["agents.agent"] = types.ModuleType("agents"), mod
+    try:
+        class Policy:  # always takes the first legal action: a stand-in for a stuck policy
+            def __init__(self, *a, **k):
+                pass
+
+            def load(self, path):
+                pass
+
+            def act(self, obs, mask, greedy):
+                return int(np.flatnonzero(mask)[0])
+
+        env = ArcAgi3GymEnv(ScriptedArc([0] * 10), click_grid=1, history_len=1, max_actions=20)
+        env.reset()
+        frame = env._last_frame
+        plain = make_policy_agent_class(Policy, "x", click_grid=1, history_len=1)()
+        assert plain.choose_action([], frame) is plain.choose_action([], frame)   # stuck
+        masked = make_policy_agent_class(Policy, "x", click_grid=1, history_len=1, noop_masking=True)()
+        first, second = masked.choose_action([], frame), masked.choose_action([], frame)
+        assert first is not second                                                 # loop broken
+    finally:
+        for k, v in saved.items():
+            if v is None:
+                sys.modules.pop(k, None)
+            else:
+                sys.modules[k] = v
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):
