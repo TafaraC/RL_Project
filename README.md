@@ -1,5 +1,19 @@
 # ARC-AGI-3 RL scaffold
 
+## Current PPO experiment (23 October 2026)
+
+The current branch adds a small action-history representation to our PPO and
+uses a 16×16 click grid for new experiments. The previous 8×8 grid could not
+reach ft09 level 2's puzzle tiles. Old results/checkpoints remain unchanged.
+
+See [the recorded diagnosis](reports/PPO_VISUAL_DIAGNOSTICS.md) and
+[the fixed experiment plan](reports/PPO_ACTION_MEMORY_PLAN.md) for evidence,
+source-inspection disclosure, reset semantics, validation and comparisons.
+Run `python scripts/run_ppo_action_memory.py` in the CUDA virtual environment
+for the finer-grid control, memory candidate and no-novelty ablation. The
+runner saves commands/status/logs under `runs/ppo_action_memory_20261023`.
+The historical scaffold notes below are not the current experiment status.
+
 ## Local setup and verification
 
 The original supplied ZIP is preserved in base commit `809b718`.

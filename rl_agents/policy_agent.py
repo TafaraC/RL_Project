@@ -37,7 +37,8 @@ from environment.arc_gym_env import (GRID_SIZE, N_COLORS, SIMPLE_ACTIONS as _SIM
 
 def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8,
                              history_len: int = 4, device: str = "cpu",
-                             noop_masking: bool = False):
+                             noop_masking: bool = False, ppo_action_memory: bool = False,
+                             stochastic: bool = False, max_actions: int = 80):
     """Returns an `agents.agent.Agent` subclass driven by a trained policy.
 
     `agent_cls` is e.g. `rl_agents.dqn.dqn_agent.DQNAgent` -- anything exposing
@@ -47,9 +48,14 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
 
     n_actions = len(_SIMPLE_ACTIONS) + click_grid * click_grid
     obs_shape = (history_len * N_COLORS, GRID_SIZE, GRID_SIZE)
+    if ppo_action_memory:
+        from rl_agents.ppo.action_memory import ActionMemory, MEMORY_CHANNELS
+        obs_shape = (obs_shape[0] + MEMORY_CHANNELS, GRID_SIZE, GRID_SIZE)
+        if noop_masking:
+            raise ValueError('Do not combine action memory and no-op masking')
 
     class PolicyAgent(Agent):
-        MAX_ACTIONS = 80
+        MAX_ACTIONS = max_actions
 
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             super().__init__(*args, **kwargs)
@@ -58,7 +64,11 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
             self._noop = NoopMemory()
             self._prev_key = None
             self._prev_action = None
-            self._policy = agent_cls(obs_shape, n_actions, device=device, inference_only=True)
+            self._action_memory = ActionMemory(click_grid) if ppo_action_memory else None
+            self._memory_grid = None
+            self._memory_action = None
+            policy_kwargs = {'action_memory': True} if ppo_action_memory else {}
+            self._policy = agent_cls(obs_shape, n_actions, device=device, inference_only=True, **policy_kwargs)
             self._policy.load(checkpoint_path)
 
         def is_done(self, frames: list[FrameData], latest_frame: FrameData) -> bool:
@@ -96,20 +106,32 @@ def make_policy_agent_class(agent_cls, checkpoint_path: str, click_grid: int = 8
             if latest_frame.state in (GameState.NOT_PLAYED, GameState.GAME_OVER):
                 self._history = []
                 self._prev_key = None
+                if self._action_memory is not None:
+                    self._action_memory.clear()
+                    self._memory_grid = self._memory_action = None
                 return GameAction.RESET
 
             obs = self._obs(latest_frame)
+            if self._action_memory is not None:
+                if self._memory_action is not None:
+                    self._action_memory.update(self._memory_action, self._memory_grid, obs[-16:])
+                self._memory_grid = obs[-16:].copy()
+                obs = self._action_memory.augment(obs)
             mask = self._mask(latest_frame)
             if noop_masking:
                 key = frame_key(latest_frame.frame[-1]) if latest_frame.frame else 0
                 if self._prev_key is not None and key == self._prev_key:
                     self._noop.record(self._prev_key, self._prev_action)
                 mask = self._noop.apply(mask, key)
-            action_id = self._policy.act(obs, mask, greedy=True)
+            action_id = self._policy.act(obs, mask, greedy=not stochastic)
+            self._memory_action = action_id
             if noop_masking:
                 self._prev_key, self._prev_action = key, action_id
             if action_id < len(_SIMPLE_ACTIONS) and _SIMPLE_ACTIONS[action_id] is GameAction.RESET:
                 self._history = []
+                if self._action_memory is not None:
+                    self._action_memory.clear()
+                    self._memory_grid = self._memory_action = None
 
             n_simple = len(_SIMPLE_ACTIONS)
             if action_id < n_simple:

@@ -220,6 +220,7 @@ class ArcAgi3GymEnv(gym.Env):
         self._action_counter = 0
         self._last_levels_completed = 0
         self._last_frame: Optional[FrameData] = None
+        self._history_reset = True
 
         # Improvement 1 (training reward only): one-off bonus the FIRST time a screen is
         # seen in an episode, capped per episode so animated screens cannot be farmed.
@@ -243,6 +244,7 @@ class ArcAgi3GymEnv(gym.Env):
             self._rng = np.random.default_rng(seed)
 
         frame = self._request(GameAction.RESET)
+        self._history_reset = True
         self._episode_done = False
         self._action_counter = 0
         self._last_levels_completed = frame.levels_completed
@@ -262,6 +264,7 @@ class ArcAgi3GymEnv(gym.Env):
         if self._episode_done:
             raise RuntimeError("Episode ended; call reset() before step()")
         game_action, action_data = self._decode(action)
+        self._history_reset = game_action is GameAction.RESET
         if game_action is GameAction.RESET:
             self._history = []
         prev_key = self._key(self._last_frame)
@@ -280,6 +283,7 @@ class ArcAgi3GymEnv(gym.Env):
             # budget rather than ending the episode. See module docstring
             # point 4.
             frame = self._request(GameAction.RESET)
+            self._history_reset = True
             self._action_counter += 1
             reward -= self.reward_config.action_cost
             self._history = []
@@ -381,4 +385,5 @@ class ArcAgi3GymEnv(gym.Env):
             "win_levels": frame.win_levels,
             "game_id": self.game_id,
             "raw_state": frame.state,
+            "history_reset": self._history_reset,
         }

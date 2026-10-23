@@ -46,6 +46,11 @@ def make_env(arc, game_id, args, seed):
             raise ValueError('PPO count novelty must be used alone with PPO')
         from rl_agents.ppo.novelty import EpisodicNovelty
         env = EpisodicNovelty(env, args.ppo_novelty_bonus, getattr(args, 'ppo_novelty_cap', .5))
+    if getattr(args, 'ppo_action_memory', False):
+        if args.agent != 'ppo' or getattr(args, 'noop_masking', False):
+            raise ValueError('Action memory is PPO-only and must not be combined with no-op masking')
+        from rl_agents.ppo.action_memory import ActionHistoryEnv
+        env = ActionHistoryEnv(env, args.click_grid)
     return env
 
 
@@ -93,7 +98,8 @@ def run(arc, args):
             if args.agent == "ppo" and agent is None:
                 from rl_agents.ppo.ppo_agent import PPOAgent, PPOConfig
                 agent = PPOAgent(env.observation_space.shape, env.n_actions,
-                                 PPOConfig(seed=args.seed, device=args.device))
+                                 PPOConfig(seed=args.seed, device=args.device),
+                                 action_memory=getattr(args, 'ppo_action_memory', False))
             obs, info = env.reset(seed=args.seed + ep)
             ret, done = 0.0, False
             prev_levels, level_actions = info["levels_completed"], []
@@ -150,6 +156,7 @@ if __name__ == "__main__":
     p.add_argument("--history-len", type=int, default=4)
     p.add_argument("--ppo-novelty-bonus", type=float, default=0.0, help="PPO only: count-based observation bonus (0 = off)")
     p.add_argument("--ppo-novelty-cap", type=float, default=0.5)
+    p.add_argument("--ppo-action-memory", action="store_true", help="PPO: previous action and capped repeat/no-change streak inputs")
     p.add_argument("--novelty-bonus", type=float, default=0.0,
                    help="Improvement 1: reward for the first visit to each screen per episode (0 = off)")
     p.add_argument("--novelty-cap", type=float, default=0.5,

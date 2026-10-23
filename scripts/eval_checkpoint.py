@@ -55,7 +55,8 @@ def evaluate(arc, args, agent=None):
                     if getattr(args, "agent", "dqn") == "ppo":
                         from rl_agents.ppo.ppo_agent import PPOAgent
                         agent = PPOAgent(env.observation_space.shape, env.n_actions,
-                                         device=args.device, inference_only=True)
+                                         device=args.device, inference_only=True,
+                                         action_memory=getattr(args, 'ppo_action_memory', False))
                     else:
                         from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
                         agent = DQNAgent(env.observation_space.shape, env.n_actions,
@@ -110,6 +111,7 @@ if __name__ == "__main__":
     p.add_argument("--max-actions", type=int, default=1000)
     p.add_argument("--click-grid", type=int, default=8)
     p.add_argument("--history-len", type=int, default=4)
+    p.add_argument("--ppo-action-memory", action="store_true")
     p.add_argument("--device", default="cpu")
     p.add_argument("--offline", action="store_true")
     p.add_argument("--out-dir", default="eval")

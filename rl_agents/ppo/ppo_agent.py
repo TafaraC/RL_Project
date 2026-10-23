@@ -35,7 +35,7 @@ def compute_gae(rewards, values, next_values, terminated, boundaries, gamma, lam
 
 
 class PPOAgent:
-    def __init__(self, obs_shape, n_actions, config=None, *, device=None, inference_only=False):
+    def __init__(self, obs_shape, n_actions, config=None, *, device=None, inference_only=False, action_memory=False):
         self.cfg = PPOConfig(**asdict(config)) if config else PPOConfig()
         if device is not None:
             self.cfg.device = device
@@ -45,6 +45,8 @@ class PPOAgent:
         self.rng = np.random.default_rng(self.cfg.seed)
         self.device = torch.device(self.cfg.device)
         self.obs_shape, self.n_actions = tuple(int(dim) for dim in obs_shape), int(n_actions)
+        from rl_agents.ppo.action_memory import SCHEMA
+        self.observation_schema = SCHEMA if action_memory else 'pixels_v1'
         # Same convolutional architecture as DQN; last output is the state value.
         self.network = QNetwork(obs_shape[0], n_actions + 1).to(self.device)
         self.optimizer = None if inference_only else torch.optim.Adam(self.network.parameters(), lr=self.cfg.lr)
@@ -121,10 +123,13 @@ class PPOAgent:
 
     def save(self, path):
         torch.save({'algorithm': 'ppo', 'network': self.network.state_dict(), 'cfg': asdict(self.cfg),
+                    'observation_schema': self.observation_schema,
                     'obs_shape': self.obs_shape, 'n_actions': self.n_actions}, path)
 
     def load(self, path):
         checkpoint = torch.load(path, map_location=self.device, weights_only=True)
+        if checkpoint.get('observation_schema', 'pixels_v1') != self.observation_schema:
+            raise ValueError('Checkpoint observation schema does not match action-memory setting')
         if checkpoint['algorithm'] != 'ppo' or tuple(checkpoint['obs_shape']) != self.obs_shape or checkpoint['n_actions'] != self.n_actions:
             raise ValueError('Checkpoint architecture does not match environment')
         self.network.load_state_dict(checkpoint['network'])
