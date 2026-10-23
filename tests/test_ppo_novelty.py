@@ -52,6 +52,9 @@ def test_ppo_only_wiring_and_reward_log(tmp_path):
         row = next(csv.DictReader(f))
     assert float(row['novelty_bonus_total']) > 0
     assert float(row['shaped_return']) == pytest.approx(float(row['extrinsic_return'])+float(row['novelty_bonus_total']), abs=.00011)
+    from rl_agents.ppo.ppo_agent import PPOAgent
+    loaded = PPOAgent((16, 64, 64), 8, inference_only=True)
+    loaded.load(tmp_path/'ppo_seed0/ppo.pt')
     args.agent = 'dqn'
     with pytest.raises(ValueError): make_env(Arcade(), 'mock', args, 0)
 

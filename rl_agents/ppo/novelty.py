@@ -16,7 +16,7 @@ class EpisodicNovelty(gym.Wrapper):
         super().__init__(env)
         if not math.isfinite(beta) or not math.isfinite(cap) or beta < 0 or cap < 0:
             raise ValueError('Novelty beta and cap must be finite and nonnegative')
-        self.n_actions = env.action_space.n
+        self.n_actions = int(env.action_space.n)
         self.beta, self.cap = beta, cap
         self.counts = Counter()
         self.total = 0.

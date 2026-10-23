@@ -44,7 +44,7 @@ class PPOAgent:
         torch.manual_seed(self.cfg.seed)
         self.rng = np.random.default_rng(self.cfg.seed)
         self.device = torch.device(self.cfg.device)
-        self.obs_shape, self.n_actions = tuple(obs_shape), n_actions
+        self.obs_shape, self.n_actions = tuple(int(dim) for dim in obs_shape), int(n_actions)
         # Same convolutional architecture as DQN; last output is the state value.
         self.network = QNetwork(obs_shape[0], n_actions + 1).to(self.device)
         self.optimizer = None if inference_only else torch.optim.Adam(self.network.parameters(), lr=self.cfg.lr)
