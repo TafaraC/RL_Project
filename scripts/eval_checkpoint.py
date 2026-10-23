@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
+import hashlib
 from collections import Counter
 import sys
 import time
@@ -27,8 +29,16 @@ from run_baseline import make_env  # noqa: E402
 
 
 def evaluate(arc, args, agent=None):
+    if getattr(args, 'stochastic', False) and getattr(args, 'agent', 'dqn') != 'ppo':
+        raise ValueError('Stochastic policy sampling requires PPO')
+    if getattr(args, 'novelty_bonus', 0.0) != 0 or getattr(args, 'ppo_novelty_bonus', 0.0) != 0:
+        raise ValueError('Novelty reward must be disabled during evaluation')
     out = Path(args.out_dir) / args.tag
     out.mkdir(parents=True, exist_ok=True)
+    config = dict(vars(args))
+    if getattr(args, 'checkpoint', None) and Path(args.checkpoint).is_file():
+        config['checkpoint_sha256'] = hashlib.sha256(Path(args.checkpoint).read_bytes()).hexdigest()
+    (out / 'config.json').write_text(json.dumps(config, indent=2))
     games = args.games.split(",")
     fields = ["game", "episode", "actions_used", "levels_completed", "won",
               "level_completion_actions", "wall_s", "n_distinct_actions", "noop_frac",
@@ -51,6 +61,11 @@ def evaluate(arc, args, agent=None):
                         agent = DQNAgent(env.observation_space.shape, env.n_actions,
                                          DQNConfig(device=args.device), inference_only=True)
                     agent.load(args.checkpoint)
+                # Constructors seed Torch for initialization; set sampling RNG afterwards.
+                # This controls policy sampling, not the underlying ARC engine layouts.
+                if getattr(args, 'agent', 'dqn') == 'ppo':
+                    import torch
+                    torch.manual_seed(args.seed + ep)
                 obs, info = env.reset(seed=args.seed + ep)
                 done, prev, level_actions = False, info["levels_completed"], []
                 counts, noops, steps = Counter(), 0, 0

@@ -224,3 +224,12 @@ runner uses cached offline games to avoid repeated API metadata downloads and ch
 CUDA availability before launching jobs. Use `--training-only` to defer evaluation,
 and `--games` / `--out-dir` to keep restarted GPU runs separate from completed CPU runs.
 See `reports/PPO_BASELINE_VALIDATION.md` for the failure diagnosis and reference comparison.
+
+### PPO improvement 1 (separate from Nathan's DQN variants)
+
+See `reports/PPO_NOVELTY_PLAN.md` for the fixed protocol and student-level explanation.
+`--ppo-novelty-bonus 0.01 --ppo-novelty-cap 0.5` adds a count-based visible-screen
+reward to PPO training only. Nathan's `--novelty-bonus` and `--noop-masking` remain
+separate and are disabled for this experiment. Original shaped return and intrinsic
+bonus are logged separately. `scripts/run_ppo_novelty.py` first evaluates frozen PPO
+with sampling, then trains and evaluates the new variant on GPU across three seeds.

@@ -33,7 +33,7 @@ def make_env(arc, game_id, args, seed):
     raw_env = arc.make(game_id, render_mode=None)
     if raw_env is None:
         raise RuntimeError(f"Could not load {game_id}; check cached files or network access")
-    return ArcAgi3GymEnv(
+    env = ArcAgi3GymEnv(
         raw_env, game_id=game_id,
         click_grid=args.click_grid, history_len=args.history_len,
         max_actions=args.max_actions, seed=seed,
@@ -41,6 +41,12 @@ def make_env(arc, game_id, args, seed):
         novelty_cap=getattr(args, "novelty_cap", 0.5),
         noop_masking=getattr(args, "noop_masking", False),
     )
+    if getattr(args, 'ppo_novelty_bonus', 0.0) > 0:
+        if args.agent != 'ppo' or getattr(args, 'novelty_bonus', 0.0) != 0 or getattr(args, 'noop_masking', False):
+            raise ValueError('PPO count novelty must be used alone with PPO')
+        from rl_agents.ppo.novelty import EpisodicNovelty
+        env = EpisodicNovelty(env, args.ppo_novelty_bonus, getattr(args, 'ppo_novelty_cap', .5))
+    return env
 
 
 def run(arc, args):
@@ -64,7 +70,7 @@ def run(arc, args):
     agent = None
     log_path = out / "episodes.csv"
     fields = ["game", "episode", "env_steps_total", "actions_used", "levels_completed",
-              "won", "shaped_return", "epsilon", "wall_s", "level_completion_actions", "novelty_bonus_total"]
+              "won", "shaped_return", "epsilon", "wall_s", "level_completion_actions", "novelty_bonus_total", "extrinsic_return"]
     total_steps, t0 = 0, time.time()
     with open(log_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
@@ -121,6 +127,7 @@ def run(arc, args):
                 "wall_s": round(time.time() - t0, 1),
                 "level_completion_actions": ";".join(map(str, level_actions)),
                 "novelty_bonus_total": round(info.get("novelty_bonus_total", 0.0), 4),
+                "extrinsic_return": round(ret - info.get("novelty_bonus_total", 0.0), 4),
             })
             f.flush()
             ep += 1
@@ -141,6 +148,8 @@ if __name__ == "__main__":
     p.add_argument("--max-actions", type=int, default=80)
     p.add_argument("--click-grid", type=int, default=8)
     p.add_argument("--history-len", type=int, default=4)
+    p.add_argument("--ppo-novelty-bonus", type=float, default=0.0, help="PPO only: count-based observation bonus (0 = off)")
+    p.add_argument("--ppo-novelty-cap", type=float, default=0.5)
     p.add_argument("--novelty-bonus", type=float, default=0.0,
                    help="Improvement 1: reward for the first visit to each screen per episode (0 = off)")
     p.add_argument("--novelty-cap", type=float, default=0.5,
