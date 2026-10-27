@@ -1,0 +1,61 @@
+{
+  "frozen_utc": "2026-10-27T13:44:49.827201+00:00",
+  "stages": {
+    "ppo_baseline": [
+      "runs/ppo_baseline_cuda_20261013/ft09/ppo_seed{seed}/ppo.pt",
+      8,
+      []
+    ],
+    "ppo_novelty": [
+      "runs/ppo_novelty_20261023/novelty/ft09/ppo_seed{seed}/ppo.pt",
+      8,
+      []
+    ],
+    "ppo_memory_novelty": [
+      "runs/ppo_action_memory_20261023/memory_novelty/ft09/ppo_seed{seed}/ppo.pt",
+      16,
+      [
+        "--ppo-action-memory"
+      ]
+    ],
+    "dqn_baseline": [
+      "runs/dqn_archive/runs_final/ft09/dqn_seed{seed}/dqn.pt",
+      8,
+      []
+    ],
+    "dqn_novelty": [
+      "runs/dqn_archive/runs_imp1/ft09/dqn_seed{seed}/dqn.pt",
+      8,
+      []
+    ],
+    "dqn_noop": [
+      "runs/dqn_archive/runs_imp2/ft09/dqn_seed{seed}/dqn.pt",
+      8,
+      [
+        "--noop-masking"
+      ]
+    ]
+  },
+  "games": [
+    "cd82",
+    "tr87",
+    "vc33"
+  ],
+  "train_seeds": [
+    0,
+    1,
+    2
+  ],
+  "sampling_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "episodes_per_game_per_checkpoint": 5,
+  "max_actions": 1000,
+  "checkpoint_selection": "All ft09-trained seeds; same donor game for every stage. No tuning on held-out outcomes.",
+  "limitation": "Five rather than twenty rollouts per checkpoint due to deadline/compute; only three independent training seeds.",
+  "adaptation": "Frozen parameters; episodic memory only; no held-out source inspection."
+}

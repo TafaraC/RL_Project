@@ -1,0 +1,17 @@
+{
+  "agent": "dqn",
+  "games": "g50t",
+  "episodes": 20,
+  "env_steps": 50000,
+  "seed": 0,
+  "max_actions": 1000,
+  "click_grid": 8,
+  "history_len": 4,
+  "novelty_bonus": 0.0,
+  "novelty_cap": 0.5,
+  "noop_masking": true,
+  "buffer_capacity": null,
+  "device": "cpu",
+  "offline": false,
+  "out_dir": "runs_imp2\\g50t"
+}

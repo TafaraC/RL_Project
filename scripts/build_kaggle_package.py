@@ -17,6 +17,9 @@ MODELS = {
     'ppo_grid_control': ('runs/ppo_action_memory_20261023/grid_control/ft09/ppo_seed1/ppo.pt', 16, False),
     'ppo_memory_novelty': ('runs/ppo_action_memory_20261023/memory_novelty/ft09/ppo_seed0/ppo.pt', 16, True),
     'ppo_memory_only': ('runs/ppo_action_memory_20261023/memory_only/ft09/ppo_seed2/ppo.pt', 16, True),
+    'dqn_baseline': ('runs/dqn_archive/runs_final/ft09/dqn_seed1/dqn.pt',8,False),
+    'dqn_novelty': ('runs/dqn_archive/runs_imp1/ft09/dqn_seed0/dqn.pt',8,False),
+    'dqn_noop': ('runs/dqn_archive/runs_imp2/ft09/dqn_seed1/dqn.pt',8,False),
 }
 
 def cell(source, kind='code'):
@@ -30,12 +33,15 @@ def main():
     manifests = {}
     for name, (source, grid, memory) in MODELS.items():
         checkpoint = torch.load(ROOT/source, map_location='cpu', weights_only=True)
-        assert checkpoint['n_actions'] == 7+grid**2
-        assert checkpoint['obs_shape'][0] == (80 if memory else 64)
-        arrays = {k: v.detach().cpu().numpy() for k,v in checkpoint['network'].items()}
+        algorithm = name.split('_')[0]
+        if algorithm == 'ppo':
+            assert checkpoint['n_actions'] == 7+grid**2
+            assert checkpoint['obs_shape'][0] == (80 if memory else 64)
+        arrays = {k: v.detach().cpu().numpy() for k,v in checkpoint['network' if algorithm == 'ppo' else 'q'].items()}
         buffer = io.BytesIO()
         np.savez_compressed(buffer, **arrays)
-        config = dict(name=name, algorithm='ppo', click_grid=grid, action_memory=memory,
+        config = dict(name=name, algorithm=algorithm, click_grid=grid, action_memory=memory,
+                      noop_masking=name=='dqn_noop', eval_epsilon=.3 if algorithm=='dqn' else 0,
                       training_game='ft09', source=source,
                       source_sha256=hashlib.sha256((ROOT/source).read_bytes()).hexdigest(),
                       seed=checkpoint['cfg']['seed'], sampling_seed=100, max_actions=1000,
@@ -61,7 +67,7 @@ def main():
             metadata=dict(kernelspec=dict(name='python3', display_name='Python 3', language='python'),
                 kaggle=dict(accelerator='nvidiaTeslaT4', isInternetEnabled=False, isGpuEnabled=True,
                             language='python', sourceType='notebook')),
-            cells=[cell(f'# WitsC: {name}\n\nSelf-contained frozen PPO. Attach ARC-AGI-3 competition data; enable T4 GPU; internet OFF. '
+            cells=[cell(f'# WitsC: {name}\n\nSelf-contained frozen {algorithm.upper()}. Attach ARC-AGI-3 competition data; enable T4 GPU; internet OFF. '
                 'Weights and inference source are embedded. Save & Run All tests CUDA inference and emits the official starter placeholder; '
                 'only a competition rerun produces a genuine score.\n\n'
                 'Original research: https://github.com/TafaraC/RL_Project . No online learning or game-specific routing.\n', 'markdown'),
@@ -69,7 +75,7 @@ def main():
         path = OUT/f'{name}.ipynb'
         path.write_text(json.dumps(nb, ensure_ascii=True), encoding='utf-8')
         # Human-readable assets alongside notebook, useful for audit/testing.
-        assets = OUT/'assets'/name
+        assets = ROOT/'kaggle/assets'/name
         assets.mkdir(parents=True, exist_ok=True)
         (assets/'weights.npz').write_bytes(buffer.getvalue())
         (assets/'model.json').write_text(json.dumps(config, indent=2)+'\n')

@@ -44,6 +44,13 @@ dev, held_out = sorted(games[:4]), sorted(games[4:7])
 
 ## Change log
 
+27 October 2026: freeze final transfer evaluation before observing held-out results.
+Evaluate all three ft09-trained seeds of baseline, novelty and final memory stage
+for both DQN and PPO on cd82, tr87 and vc33. Five frozen rollouts per checkpoint
+per game (deadline/compute limitation), 1,000 actions, sampling seeds 100-104;
+PPO sampled, DQN epsilon 0.3. No parameter updates, held-out source inspection or
+model selection from these outcomes. Full protocol: `scripts/run_final_holdout.py`.
+
 | Date | Change | Reason |
 |---|---|---|
 | 2026-10-03 | Initial split | See method above |

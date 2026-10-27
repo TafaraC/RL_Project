@@ -1,0 +1,2 @@
+game,episode,actions_used,levels_completed,won,level_completion_actions,wall_s,n_distinct_actions,noop_frac,top_action,top_action_frac,unique_frames
+dc22,0,1000,0,0,,6.1,6,0.492,51,0.819,65

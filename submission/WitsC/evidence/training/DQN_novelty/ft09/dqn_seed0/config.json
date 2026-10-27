@@ -1,0 +1,17 @@
+{
+  "agent": "dqn",
+  "games": "ft09",
+  "episodes": 20,
+  "env_steps": 50000,
+  "seed": 0,
+  "max_actions": 1000,
+  "click_grid": 8,
+  "history_len": 4,
+  "novelty_bonus": 0.01,
+  "novelty_cap": 0.5,
+  "noop_masking": false,
+  "buffer_capacity": null,
+  "device": "cpu",
+  "offline": false,
+  "out_dir": "runs_imp1"
+}

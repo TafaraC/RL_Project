@@ -1,0 +1,16 @@
+{
+  "name": "ppo_grid_control",
+  "algorithm": "ppo",
+  "click_grid": 16,
+  "action_memory": false,
+  "noop_masking": false,
+  "eval_epsilon": 0,
+  "training_game": "ft09",
+  "source": "runs/ppo_action_memory_20261023/grid_control/ft09/ppo_seed1/ppo.pt",
+  "source_sha256": "ee7a8eefd3b46886f62f4c09a939e3f1f7388f8593610c0124bcdc5f438db082",
+  "seed": 1,
+  "sampling_seed": 100,
+  "max_actions": 1000,
+  "weights_sha256": "d59ea4a325ab993aa4bdf5dc7c131bf2acd8a2577556e65caaf8d0691368c10d",
+  "selection": "Development first-level success; tie broken by lowest seed. No held-out selection."
+}

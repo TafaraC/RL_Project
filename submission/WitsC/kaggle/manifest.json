@@ -4,6 +4,8 @@
     "algorithm": "ppo",
     "click_grid": 8,
     "action_memory": false,
+    "noop_masking": false,
+    "eval_epsilon": 0,
     "training_game": "ft09",
     "source": "runs/ppo_baseline_cuda_20261013/ft09/ppo_seed2/ppo.pt",
     "source_sha256": "7c431bb7cd65147d04e1aa50d984e436e5e06cb9add142bcb487577862283508",
@@ -12,13 +14,15 @@
     "max_actions": 1000,
     "weights_sha256": "a5b12e7c15841f378808c18cbcc0270f69318890eef941d7e1e3f9ecbf40fd06",
     "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
-    "notebook_sha256": "a73a2254655f58e5fa76b355adfd51931b1ea3685d089e7bcb5205ef7ba792ab"
+    "notebook_sha256": "8b70ff10e8f33a511458e0476b97e1c12f78a5d8918e8dc0c27a544adeb38d8f"
   },
   "ppo_novelty": {
     "name": "ppo_novelty",
     "algorithm": "ppo",
     "click_grid": 8,
     "action_memory": false,
+    "noop_masking": false,
+    "eval_epsilon": 0,
     "training_game": "ft09",
     "source": "runs/ppo_novelty_20261023/novelty/ft09/ppo_seed2/ppo.pt",
     "source_sha256": "6bd69582d5c017e5a9b0aa4352c229bae6c876cea17494bd721ef1e1c36e151e",
@@ -27,13 +31,15 @@
     "max_actions": 1000,
     "weights_sha256": "32d56102681353bfdf2da9ee9bc100d0f1613b3e6d5faf1513a45bc0831f80b1",
     "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
-    "notebook_sha256": "60f692c7b51dff0c9a151abee2ae01e036b29708f18d0230c3b60cf7e6d53c64"
+    "notebook_sha256": "612fdc9830f96d17f489f99cd299740bf580b754f0004ee8bd55f77f923ce12f"
   },
   "ppo_grid_control": {
     "name": "ppo_grid_control",
     "algorithm": "ppo",
     "click_grid": 16,
     "action_memory": false,
+    "noop_masking": false,
+    "eval_epsilon": 0,
     "training_game": "ft09",
     "source": "runs/ppo_action_memory_20261023/grid_control/ft09/ppo_seed1/ppo.pt",
     "source_sha256": "ee7a8eefd3b46886f62f4c09a939e3f1f7388f8593610c0124bcdc5f438db082",
@@ -42,13 +48,15 @@
     "max_actions": 1000,
     "weights_sha256": "d59ea4a325ab993aa4bdf5dc7c131bf2acd8a2577556e65caaf8d0691368c10d",
     "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
-    "notebook_sha256": "4d9ab8ef6747510dcfa1016e39d1cb6efb9a225ac2bc72aff86eb027c77ac666"
+    "notebook_sha256": "2231deb188476ffaec5d16ed1a2589afcbc93a85436eba94226d6b6debc4d092"
   },
   "ppo_memory_novelty": {
     "name": "ppo_memory_novelty",
     "algorithm": "ppo",
     "click_grid": 16,
     "action_memory": true,
+    "noop_masking": false,
+    "eval_epsilon": 0,
     "training_game": "ft09",
     "source": "runs/ppo_action_memory_20261023/memory_novelty/ft09/ppo_seed0/ppo.pt",
     "source_sha256": "d4ad3f62fb25ddf0abd7aa89ae772381fec9677bcf834dadb042df0d20ac3878",
@@ -57,13 +65,15 @@
     "max_actions": 1000,
     "weights_sha256": "1a0cefa54a1c3d091a9398b14c847e46f8ce422427036f9f8968be5f71f60b53",
     "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
-    "notebook_sha256": "db8597742d24a32d9bae59176e72c4abb9c87a96ff6110c354d1ab5d282ddb5c"
+    "notebook_sha256": "12a5e9e987589456edcab9c3a7dbf56049da5e56a1f4c6aa4c17014e9e90375f"
   },
   "ppo_memory_only": {
     "name": "ppo_memory_only",
     "algorithm": "ppo",
     "click_grid": 16,
     "action_memory": true,
+    "noop_masking": false,
+    "eval_epsilon": 0,
     "training_game": "ft09",
     "source": "runs/ppo_action_memory_20261023/memory_only/ft09/ppo_seed2/ppo.pt",
     "source_sha256": "2dc558c69cf733448887e8cec288a44bc8ccd1fcb76d443ec69743f51f84a7fd",
@@ -72,6 +82,57 @@
     "max_actions": 1000,
     "weights_sha256": "139e86651c509b8fe1357c7958a764ef0856d7f903b62441d3f777542fa0e018",
     "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
-    "notebook_sha256": "e734046c0cbd3bf33c452b499b4d366b66c87d020322573d923804edef9741f5"
+    "notebook_sha256": "46f485b97dfe1686bf1b353dbf7e5f01c302f723651083f6efbbaedd8b9d4720"
+  },
+  "dqn_baseline": {
+    "name": "dqn_baseline",
+    "algorithm": "dqn",
+    "click_grid": 8,
+    "action_memory": false,
+    "noop_masking": false,
+    "eval_epsilon": 0.3,
+    "training_game": "ft09",
+    "source": "runs/dqn_archive/runs_final/ft09/dqn_seed1/dqn.pt",
+    "source_sha256": "7a0c9208f24cc1d00518e3c159456f870292a66fc0794207fd72c3619cbf184d",
+    "seed": 1,
+    "sampling_seed": 100,
+    "max_actions": 1000,
+    "weights_sha256": "8ec73c28f03b3b56d6d9d46d397137304a3e2398c28589baaf9bbb97b7e8e2d2",
+    "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
+    "notebook_sha256": "2e704eddef343f4079484876fa97bb2894e896e50cacfc3b0b6996e822eb76c7"
+  },
+  "dqn_novelty": {
+    "name": "dqn_novelty",
+    "algorithm": "dqn",
+    "click_grid": 8,
+    "action_memory": false,
+    "noop_masking": false,
+    "eval_epsilon": 0.3,
+    "training_game": "ft09",
+    "source": "runs/dqn_archive/runs_imp1/ft09/dqn_seed0/dqn.pt",
+    "source_sha256": "a3a358cccabf97131403f622ec35bf80327abd1418dcc011997a3b161c0522a9",
+    "seed": 0,
+    "sampling_seed": 100,
+    "max_actions": 1000,
+    "weights_sha256": "a7af3dcdad22f7198e9f7edc5f4346e4db98d22e5c790de49601b8fb24a9e5ee",
+    "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
+    "notebook_sha256": "29dc1e23c564966de5b40aed96ca2088532d284ae6a705139ade042409803d1d"
+  },
+  "dqn_noop": {
+    "name": "dqn_noop",
+    "algorithm": "dqn",
+    "click_grid": 8,
+    "action_memory": false,
+    "noop_masking": true,
+    "eval_epsilon": 0.3,
+    "training_game": "ft09",
+    "source": "runs/dqn_archive/runs_imp2/ft09/dqn_seed1/dqn.pt",
+    "source_sha256": "862cabbefd2ac475e27750479b84462817c6a28d4a3154c9593dfb98b880fa08",
+    "seed": 1,
+    "sampling_seed": 100,
+    "max_actions": 1000,
+    "weights_sha256": "0e345350ff0837a496d99ddb1e072889a87a203e3c9a45d2ddd236429faf6c57",
+    "selection": "Development first-level success; tie broken by lowest seed. No held-out selection.",
+    "notebook_sha256": "1b88c95db83a75f392b57771228cf6833edd2fed1d2eb7aec9ce729b2b1ffc78"
   }
 }

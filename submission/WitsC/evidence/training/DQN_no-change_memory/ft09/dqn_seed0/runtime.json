@@ -1,0 +1,10 @@
+{
+  "python": "3.12.10",
+  "device": "cpu",
+  "packages": {
+    "torch": "2.14.1+cu130",
+    "numpy": "2.4.4",
+    "arcengine": "0.9.3",
+    "arc-agi": "0.9.9"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "agent": "ppo",
+  "games": "g50t",
+  "episodes": 20,
+  "env_steps": 50000,
+  "seed": 0,
+  "max_actions": 1000,
+  "click_grid": 8,
+  "history_len": 4,
+  "device": "cuda",
+  "offline": true,
+  "out_dir": "D:\\Repos\\RL_Project\\runs\\ppo_baseline_cuda_20261013\\g50t"
+}

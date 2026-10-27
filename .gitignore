@@ -6,3 +6,8 @@ __pycache__/
 checkpoints/
 runs/
 environment_files/
+reports/course_report/latex/*.log
+reports/course_report/latex/*.aux
+reports/course_report/latex/*.out
+reports/course_report/latex/*.xdv
+submission/*.zip

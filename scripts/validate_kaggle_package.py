@@ -44,7 +44,6 @@ def main():
                 compile(cell['source'], '<notebook cell>', 'exec')
         # Execute the actual extraction cell, changing only its Linux temp path.
         scope = {}
-        extraction = notebook['cells'][1]['source'].replace("Path('/tmp/witsc_assets')", repr(None))
         extraction = notebook['cells'][1]['source'].replace("Path('/tmp/witsc_assets')", f'Path({str(ROOT / "runs/kaggle_extracted" / model)!r})')
         exec(extraction, scope)
         assets = scope['root']
@@ -53,8 +52,12 @@ def main():
         os.environ['WITSC_ASSETS'] = str(assets)
         os.environ['WITSC_DEVICE'] = 'cuda'
         agent = module.MyAgent(card_id='', game_id='probe', agent_name='myagent', ROOT_URL='', record=False, arc_env=None)
-        ref = PPOAgent((80 if config['action_memory'] else 64, 64, 64), 7+config['click_grid']**2,
-                       device='cuda', inference_only=True, action_memory=config['action_memory'])
+        if config['algorithm'] == 'ppo':
+            ref = PPOAgent((80 if config['action_memory'] else 64, 64, 64), 7+config['click_grid']**2,
+                           device='cuda', inference_only=True, action_memory=config['action_memory'])
+        else:
+            from rl_agents.dqn.dqn_agent import DQNAgent, DQNConfig
+            ref = DQNAgent((64,64,64),71,DQNConfig(device='cuda'),inference_only=True)
         ref.load(ROOT/config['source'])
         history, memory = [], ActionMemory(config['click_grid'])
         previous = None
@@ -72,7 +75,7 @@ def main():
             np.testing.assert_array_equal(actual, expected)
             x = torch.from_numpy(actual).unsqueeze(0).cuda()
             with torch.inference_mode():
-                torch.testing.assert_close(agent.network(x), ref.network(x), rtol=0, atol=0)
+                torch.testing.assert_close(agent.network(x), (ref.network if config['algorithm']=='ppo' else ref.q)(x), rtol=0, atol=0)
             # Advance chosen-action history manually to test identical repeats and clicks.
             a = [1,1,10,10,12,3,3,3][i]
             agent.repeats = min(4, agent.repeats+1) if a == agent.previous_action else 1

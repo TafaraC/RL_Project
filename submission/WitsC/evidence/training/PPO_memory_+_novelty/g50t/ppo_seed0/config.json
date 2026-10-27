@@ -1,0 +1,20 @@
+{
+  "agent": "ppo",
+  "games": "g50t",
+  "episodes": 20,
+  "env_steps": 50000,
+  "seed": 0,
+  "max_actions": 1000,
+  "click_grid": 16,
+  "history_len": 4,
+  "ppo_novelty_bonus": 0.01,
+  "ppo_novelty_cap": 0.5,
+  "ppo_action_memory": true,
+  "novelty_bonus": 0.0,
+  "novelty_cap": 0.5,
+  "noop_masking": false,
+  "buffer_capacity": null,
+  "device": "cuda",
+  "offline": true,
+  "out_dir": "D:\\Repos\\RL_Project\\runs\\ppo_action_memory_20261023\\memory_novelty\\g50t"
+}
