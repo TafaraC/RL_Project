@@ -1,0 +1,14 @@
+{
+  "name": "ppo_memory_novelty",
+  "algorithm": "ppo",
+  "click_grid": 16,
+  "action_memory": true,
+  "training_game": "ft09",
+  "source": "runs/ppo_action_memory_20261023/memory_novelty/ft09/ppo_seed0/ppo.pt",
+  "source_sha256": "d4ad3f62fb25ddf0abd7aa89ae772381fec9677bcf834dadb042df0d20ac3878",
+  "seed": 0,
+  "sampling_seed": 100,
+  "max_actions": 1000,
+  "weights_sha256": "1a0cefa54a1c3d091a9398b14c847e46f8ce422427036f9f8968be5f71f60b53",
+  "selection": "Development first-level success; tie broken by lowest seed. No held-out selection."
+}

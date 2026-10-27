@@ -1,0 +1,202 @@
+[
+  {
+    "model": "ppo_baseline",
+    "game": "ft09",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.594,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_baseline",
+    "game": "dc22",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.247,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_baseline",
+    "game": "g50t",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.381,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_baseline",
+    "game": "m0r0",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.273,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_novelty",
+    "game": "ft09",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.458,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_novelty",
+    "game": "dc22",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.613,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_novelty",
+    "game": "g50t",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.564,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_novelty",
+    "game": "m0r0",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.351,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_grid_control",
+    "game": "ft09",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.444,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_grid_control",
+    "game": "dc22",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.375,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_grid_control",
+    "game": "g50t",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.479,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_grid_control",
+    "game": "m0r0",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.381,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_novelty",
+    "game": "ft09",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.488,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_novelty",
+    "game": "dc22",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.488,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_novelty",
+    "game": "g50t",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.574,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_novelty",
+    "game": "m0r0",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.294,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_only",
+    "game": "ft09",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.424,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_only",
+    "game": "dc22",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.307,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_only",
+    "game": "g50t",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.628,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "ppo_memory_only",
+    "game": "m0r0",
+    "actions": 65,
+    "levels": 0,
+    "won": false,
+    "seconds": 0.333,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  }
+]

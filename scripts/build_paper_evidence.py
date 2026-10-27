@@ -36,7 +36,7 @@ def main():
                         levels=sum(int(r['levels_completed']) for r in data),
                         wins=sum(int(r['won']) for r in data),
                         actions=sum(int(r['actions_used']) for r in data),
-                        wall_seconds=round(sum(float(r['wall_s']) for r in data), 2),
+                        wall_seconds=round(max(float(r['wall_s']) for r in data), 2),
                         source=path.relative_to(ROOT).as_posix(),
                         exported_source=exported.relative_to(OUT).as_posix()))
     with (OUT / 'verified_results.csv').open('w', newline='') as f:
@@ -55,7 +55,7 @@ def main():
     assert all(r['wins'] == 0 for r in rows)
     assert all(r['levels'] == 0 for r in rows if r['mode'] == 'greedy')
     lines += ['', f'Audited {len(rows)} evaluation files ({sum(r["episodes"] for r in rows)} episodes). No full-game wins. All audited greedy evaluations completed zero levels. Historical baseline greedy files are excluded from this aggregate because their layout differs.', '',
-        'The CSV includes original source paths, published copies under `evaluation_logs/`, action totals and recorded evaluation wall times. Wall times exclude orchestration overhead. This is an evidence export, not a new benchmark run.', '',
+        'The CSV includes original source paths, published copies under `evaluation_logs/`, action totals and recorded evaluation wall times. The source wall_s field is cumulative, so each file runtime is its final/max value, not the sum of its rows. Wall times exclude orchestration overhead. This is an evidence export, not a new benchmark run.', '',
         'Only three independent training seeds exist per condition. Twenty sampled rollouts per checkpoint do not constitute twenty independent trained models. Evaluation seeds control action sampling, not game layout generation.', '',
         'DQN and random-policy historical figures are deliberately excluded: complete matched evaluation evidence was not available for this export. No PPO-versus-DQN superiority claim is supported.']
     (OUT / 'EVIDENCE.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
