@@ -1,0 +1,271 @@
+condition,game,training_seed,eval_policy,episode,actions_used,levels_completed,won,actions_at_level_completions,distinct_actions,no_change_fraction,most_common_action,most_common_action_share,unique_frames,wall_s_cumulative,original_run
+DQN baseline,cd82,0,epsilon 0.3,0,1000,0,0,,68,0.355,53,0.73,302,6.8,holdout/dqn_baseline_seed0
+DQN baseline,cd82,0,epsilon 0.3,1,1000,0,0,,69,0.354,53,0.675,267,9.0,holdout/dqn_baseline_seed0
+DQN baseline,cd82,0,epsilon 0.3,2,1000,0,0,,69,0.355,53,0.69,330,12.1,holdout/dqn_baseline_seed0
+DQN baseline,cd82,0,epsilon 0.3,3,1000,0,0,,67,0.353,53,0.729,334,15.8,holdout/dqn_baseline_seed0
+DQN baseline,cd82,0,epsilon 0.3,4,1000,0,0,,68,0.352,53,0.703,266,20.0,holdout/dqn_baseline_seed0
+DQN baseline,tr87,0,epsilon 0.3,0,1000,0,0,,4,0.0,1,0.787,953,24.0,holdout/dqn_baseline_seed0
+DQN baseline,tr87,0,epsilon 0.3,1,1000,0,0,,4,0.0,1,0.755,963,28.3,holdout/dqn_baseline_seed0
+DQN baseline,tr87,0,epsilon 0.3,2,1000,0,0,,4,0.0,1,0.736,969,32.4,holdout/dqn_baseline_seed0
+DQN baseline,tr87,0,epsilon 0.3,3,1000,0,0,,4,0.0,1,0.775,952,36.5,holdout/dqn_baseline_seed0
+DQN baseline,tr87,0,epsilon 0.3,4,1000,0,0,,4,0.0,1,0.76,948,39.8,holdout/dqn_baseline_seed0
+DQN baseline,vc33,0,epsilon 0.3,0,1000,0,0,,63,0.0,53,0.712,50,44.9,holdout/dqn_baseline_seed0
+DQN baseline,vc33,0,epsilon 0.3,1,1000,0,0,,64,0.0,53,0.71,50,49.6,holdout/dqn_baseline_seed0
+DQN baseline,vc33,0,epsilon 0.3,2,1000,0,0,,64,0.0,53,0.72,50,54.0,holdout/dqn_baseline_seed0
+DQN baseline,vc33,0,epsilon 0.3,3,1000,0,0,,64,0.0,53,0.701,50,58.0,holdout/dqn_baseline_seed0
+DQN baseline,vc33,0,epsilon 0.3,4,1000,0,0,,64,0.0,53,0.702,50,62.3,holdout/dqn_baseline_seed0
+DQN baseline,cd82,1,epsilon 0.3,0,1000,0,0,,68,0.355,46,0.567,302,6.6,holdout/dqn_baseline_seed1
+DQN baseline,cd82,1,epsilon 0.3,1,1000,0,0,,69,0.354,46,0.531,267,8.8,holdout/dqn_baseline_seed1
+DQN baseline,cd82,1,epsilon 0.3,2,1000,0,0,,69,0.355,46,0.54,330,11.9,holdout/dqn_baseline_seed1
+DQN baseline,cd82,1,epsilon 0.3,3,1000,0,0,,67,0.353,46,0.563,334,15.7,holdout/dqn_baseline_seed1
+DQN baseline,cd82,1,epsilon 0.3,4,1000,0,0,,68,0.352,46,0.551,266,20.0,holdout/dqn_baseline_seed1
+DQN baseline,tr87,1,epsilon 0.3,0,1000,0,0,,4,0.0,2,0.777,943,24.3,holdout/dqn_baseline_seed1
+DQN baseline,tr87,1,epsilon 0.3,1,1000,0,0,,4,0.0,2,0.755,976,28.6,holdout/dqn_baseline_seed1
+DQN baseline,tr87,1,epsilon 0.3,2,1000,0,0,,4,0.0,2,0.735,974,32.4,holdout/dqn_baseline_seed1
+DQN baseline,tr87,1,epsilon 0.3,3,1000,1,0,347,4,0.0,2,0.782,970,36.8,holdout/dqn_baseline_seed1
+DQN baseline,tr87,1,epsilon 0.3,4,1000,0,0,,4,0.0,2,0.755,944,40.9,holdout/dqn_baseline_seed1
+DQN baseline,vc33,1,epsilon 0.3,0,1000,0,0,,63,0.0,50,0.713,50,45.2,holdout/dqn_baseline_seed1
+DQN baseline,vc33,1,epsilon 0.3,1,1000,0,0,,64,0.0,50,0.712,50,49.7,holdout/dqn_baseline_seed1
+DQN baseline,vc33,1,epsilon 0.3,2,1000,0,0,,64,0.0,50,0.72,50,53.9,holdout/dqn_baseline_seed1
+DQN baseline,vc33,1,epsilon 0.3,3,1000,0,0,,64,0.0,50,0.707,50,57.7,holdout/dqn_baseline_seed1
+DQN baseline,vc33,1,epsilon 0.3,4,1000,0,0,,64,0.0,50,0.704,50,61.5,holdout/dqn_baseline_seed1
+DQN baseline,cd82,2,epsilon 0.3,0,1000,0,0,,69,0.355,69,0.327,302,6.5,holdout/dqn_baseline_seed2
+DQN baseline,cd82,2,epsilon 0.3,1,1000,0,0,,69,0.354,69,0.311,267,8.7,holdout/dqn_baseline_seed2
+DQN baseline,cd82,2,epsilon 0.3,2,1000,0,0,,69,0.355,69,0.312,330,11.7,holdout/dqn_baseline_seed2
+DQN baseline,cd82,2,epsilon 0.3,3,1000,0,0,,69,0.353,69,0.35,334,15.5,holdout/dqn_baseline_seed2
+DQN baseline,cd82,2,epsilon 0.3,4,1000,0,0,,68,0.352,69,0.363,266,19.7,holdout/dqn_baseline_seed2
+DQN baseline,tr87,2,epsilon 0.3,0,1000,0,0,,4,0.0,2,0.79,941,23.8,holdout/dqn_baseline_seed2
+DQN baseline,tr87,2,epsilon 0.3,1,1000,0,0,,4,0.0,2,0.764,964,27.2,holdout/dqn_baseline_seed2
+DQN baseline,tr87,2,epsilon 0.3,2,1000,0,0,,4,0.0,2,0.74,960,30.4,holdout/dqn_baseline_seed2
+DQN baseline,tr87,2,epsilon 0.3,3,1000,0,0,,4,0.0,2,0.785,959,33.5,holdout/dqn_baseline_seed2
+DQN baseline,tr87,2,epsilon 0.3,4,1000,0,0,,4,0.0,2,0.77,936,37.5,holdout/dqn_baseline_seed2
+DQN baseline,vc33,2,epsilon 0.3,0,1000,0,0,,63,0.0,69,0.713,50,40.5,holdout/dqn_baseline_seed2
+DQN baseline,vc33,2,epsilon 0.3,1,1000,0,0,,64,0.0,69,0.708,50,45.1,holdout/dqn_baseline_seed2
+DQN baseline,vc33,2,epsilon 0.3,2,1000,0,0,,64,0.0,69,0.72,50,49.2,holdout/dqn_baseline_seed2
+DQN baseline,vc33,2,epsilon 0.3,3,1000,0,0,,64,0.0,69,0.702,50,53.2,holdout/dqn_baseline_seed2
+DQN baseline,vc33,2,epsilon 0.3,4,1000,0,0,,64,0.0,69,0.701,50,56.8,holdout/dqn_baseline_seed2
+DQN no-change memory,cd82,0,epsilon 0.3,0,1000,0,0,,68,0.355,43,0.39,328,7.1,holdout/dqn_noop_seed0
+DQN no-change memory,cd82,0,epsilon 0.3,1,1000,0,0,,69,0.354,43,0.37,288,9.9,holdout/dqn_noop_seed0
+DQN no-change memory,cd82,0,epsilon 0.3,2,1000,0,0,,68,0.355,43,0.373,332,12.8,holdout/dqn_noop_seed0
+DQN no-change memory,cd82,0,epsilon 0.3,3,1000,0,0,,69,0.352,43,0.386,298,16.6,holdout/dqn_noop_seed0
+DQN no-change memory,cd82,0,epsilon 0.3,4,1000,0,0,,68,0.352,43,0.375,312,20.3,holdout/dqn_noop_seed0
+DQN no-change memory,tr87,0,epsilon 0.3,0,1000,0,0,,4,0.0,3,0.783,951,24.5,holdout/dqn_noop_seed0
+DQN no-change memory,tr87,0,epsilon 0.3,1,1000,0,0,,4,0.0,3,0.777,972,28.3,holdout/dqn_noop_seed0
+DQN no-change memory,tr87,0,epsilon 0.3,2,1000,0,0,,4,0.0,3,0.753,968,32.3,holdout/dqn_noop_seed0
+DQN no-change memory,tr87,0,epsilon 0.3,3,1000,0,0,,4,0.0,3,0.79,957,36.5,holdout/dqn_noop_seed0
+DQN no-change memory,tr87,0,epsilon 0.3,4,1000,0,0,,4,0.0,3,0.751,945,40.0,holdout/dqn_noop_seed0
+DQN no-change memory,vc33,0,epsilon 0.3,0,1000,0,0,,63,0.0,43,0.715,50,45.1,holdout/dqn_noop_seed0
+DQN no-change memory,vc33,0,epsilon 0.3,1,1000,0,0,,64,0.0,43,0.708,50,48.4,holdout/dqn_noop_seed0
+DQN no-change memory,vc33,0,epsilon 0.3,2,1000,0,0,,64,0.0,43,0.72,50,52.0,holdout/dqn_noop_seed0
+DQN no-change memory,vc33,0,epsilon 0.3,3,1000,0,0,,64,0.0,43,0.705,50,55.5,holdout/dqn_noop_seed0
+DQN no-change memory,vc33,0,epsilon 0.3,4,1000,0,0,,64,0.0,43,0.703,50,58.8,holdout/dqn_noop_seed0
+DQN no-change memory,cd82,1,epsilon 0.3,0,1000,0,0,,67,0.355,51,0.387,318,6.9,holdout/dqn_noop_seed1
+DQN no-change memory,cd82,1,epsilon 0.3,1,1000,0,0,,68,0.354,51,0.372,288,9.7,holdout/dqn_noop_seed1
+DQN no-change memory,cd82,1,epsilon 0.3,2,1000,0,0,,67,0.355,51,0.37,332,13.4,holdout/dqn_noop_seed1
+DQN no-change memory,cd82,1,epsilon 0.3,3,1000,0,0,,69,0.352,51,0.386,298,17.2,holdout/dqn_noop_seed1
+DQN no-change memory,cd82,1,epsilon 0.3,4,1000,0,0,,68,0.352,51,0.374,310,20.7,holdout/dqn_noop_seed1
+DQN no-change memory,tr87,1,epsilon 0.3,0,1000,0,0,,4,0.0,2,0.789,941,25.3,holdout/dqn_noop_seed1
+DQN no-change memory,tr87,1,epsilon 0.3,1,1000,0,0,,4,0.0,2,0.764,964,29.6,holdout/dqn_noop_seed1
+DQN no-change memory,tr87,1,epsilon 0.3,2,1000,0,0,,4,0.0,2,0.74,960,33.5,holdout/dqn_noop_seed1
+DQN no-change memory,tr87,1,epsilon 0.3,3,1000,0,0,,4,0.0,2,0.784,959,37.9,holdout/dqn_noop_seed1
+DQN no-change memory,tr87,1,epsilon 0.3,4,1000,0,0,,4,0.0,2,0.77,936,41.8,holdout/dqn_noop_seed1
+DQN no-change memory,vc33,1,epsilon 0.3,0,1000,0,0,,63,0.0,51,0.718,50,46.7,holdout/dqn_noop_seed1
+DQN no-change memory,vc33,1,epsilon 0.3,1,1000,0,0,,64,0.0,51,0.708,50,50.0,holdout/dqn_noop_seed1
+DQN no-change memory,vc33,1,epsilon 0.3,2,1000,0,0,,64,0.0,51,0.726,50,54.3,holdout/dqn_noop_seed1
+DQN no-change memory,vc33,1,epsilon 0.3,3,1000,0,0,,64,0.0,51,0.703,50,58.5,holdout/dqn_noop_seed1
+DQN no-change memory,vc33,1,epsilon 0.3,4,1000,0,0,,64,0.0,51,0.702,50,61.6,holdout/dqn_noop_seed1
+DQN no-change memory,cd82,2,epsilon 0.3,0,1000,0,0,,68,0.356,10,0.384,309,7.1,holdout/dqn_noop_seed2
+DQN no-change memory,cd82,2,epsilon 0.3,1,1000,0,0,,69,0.356,10,0.373,272,9.9,holdout/dqn_noop_seed2
+DQN no-change memory,cd82,2,epsilon 0.3,2,1000,0,0,,67,0.352,10,0.387,338,13.0,holdout/dqn_noop_seed2
+DQN no-change memory,cd82,2,epsilon 0.3,3,1000,0,0,,69,0.351,10,0.405,327,15.8,holdout/dqn_noop_seed2
+DQN no-change memory,cd82,2,epsilon 0.3,4,1000,0,0,,67,0.352,10,0.376,308,19.1,holdout/dqn_noop_seed2
+DQN no-change memory,tr87,2,epsilon 0.3,0,1000,0,0,,4,0.0,1,0.787,953,23.3,holdout/dqn_noop_seed2
+DQN no-change memory,tr87,2,epsilon 0.3,1,1000,0,0,,4,0.0,1,0.755,963,26.5,holdout/dqn_noop_seed2
+DQN no-change memory,tr87,2,epsilon 0.3,2,1000,0,0,,4,0.0,1,0.736,969,30.2,holdout/dqn_noop_seed2
+DQN no-change memory,tr87,2,epsilon 0.3,3,1000,0,0,,4,0.0,1,0.775,952,34.3,holdout/dqn_noop_seed2
+DQN no-change memory,tr87,2,epsilon 0.3,4,1000,0,0,,4,0.0,1,0.76,948,38.0,holdout/dqn_noop_seed2
+DQN no-change memory,vc33,2,epsilon 0.3,0,1000,0,0,,63,0.0,10,0.716,50,42.1,holdout/dqn_noop_seed2
+DQN no-change memory,vc33,2,epsilon 0.3,1,1000,0,0,,64,0.0,10,0.712,50,46.0,holdout/dqn_noop_seed2
+DQN no-change memory,vc33,2,epsilon 0.3,2,1000,0,0,,64,0.0,10,0.725,50,50.1,holdout/dqn_noop_seed2
+DQN no-change memory,vc33,2,epsilon 0.3,3,1000,0,0,,64,0.0,10,0.712,50,54.1,holdout/dqn_noop_seed2
+DQN no-change memory,vc33,2,epsilon 0.3,4,1000,0,0,,64,0.0,10,0.701,50,57.1,holdout/dqn_noop_seed2
+DQN novelty,cd82,0,epsilon 0.3,0,1000,0,0,,68,0.355,21,0.708,302,6.4,holdout/dqn_novelty_seed0
+DQN novelty,cd82,0,epsilon 0.3,1,1000,0,0,,69,0.354,21,0.655,267,8.7,holdout/dqn_novelty_seed0
+DQN novelty,cd82,0,epsilon 0.3,2,1000,0,0,,69,0.355,21,0.676,330,11.8,holdout/dqn_novelty_seed0
+DQN novelty,cd82,0,epsilon 0.3,3,1000,0,0,,67,0.353,21,0.717,334,15.6,holdout/dqn_novelty_seed0
+DQN novelty,cd82,0,epsilon 0.3,4,1000,0,0,,68,0.352,21,0.697,266,19.1,holdout/dqn_novelty_seed0
+DQN novelty,tr87,0,epsilon 0.3,0,1000,0,0,,4,0.0,1,0.787,953,22.6,holdout/dqn_novelty_seed0
+DQN novelty,tr87,0,epsilon 0.3,1,1000,0,0,,4,0.0,1,0.755,963,25.8,holdout/dqn_novelty_seed0
+DQN novelty,tr87,0,epsilon 0.3,2,1000,0,0,,4,0.0,1,0.736,969,29.8,holdout/dqn_novelty_seed0
+DQN novelty,tr87,0,epsilon 0.3,3,1000,0,0,,4,0.0,1,0.775,952,33.3,holdout/dqn_novelty_seed0
+DQN novelty,tr87,0,epsilon 0.3,4,1000,0,0,,4,0.0,1,0.76,948,37.4,holdout/dqn_novelty_seed0
+DQN novelty,vc33,0,epsilon 0.3,0,1000,0,0,,63,0.0,57,0.712,50,41.8,holdout/dqn_novelty_seed0
+DQN novelty,vc33,0,epsilon 0.3,1,1000,0,0,,64,0.0,57,0.713,50,46.2,holdout/dqn_novelty_seed0
+DQN novelty,vc33,0,epsilon 0.3,2,1000,0,0,,64,0.0,57,0.719,50,49.6,holdout/dqn_novelty_seed0
+DQN novelty,vc33,0,epsilon 0.3,3,1000,0,0,,64,0.0,57,0.708,50,52.6,holdout/dqn_novelty_seed0
+DQN novelty,vc33,0,epsilon 0.3,4,1000,0,0,,64,0.0,57,0.7,50,55.5,holdout/dqn_novelty_seed0
+DQN novelty,cd82,1,epsilon 0.3,0,1000,0,0,,68,0.354,70,0.516,298,7.8,holdout/dqn_novelty_seed1
+DQN novelty,cd82,1,epsilon 0.3,1,1000,0,0,,69,0.354,70,0.486,248,10.4,holdout/dqn_novelty_seed1
+DQN novelty,cd82,1,epsilon 0.3,2,1000,0,0,,69,0.354,70,0.461,315,14.1,holdout/dqn_novelty_seed1
+DQN novelty,cd82,1,epsilon 0.3,3,1000,0,0,,67,0.351,70,0.501,322,17.3,holdout/dqn_novelty_seed1
+DQN novelty,cd82,1,epsilon 0.3,4,1000,0,0,,68,0.352,70,0.441,259,21.1,holdout/dqn_novelty_seed1
+DQN novelty,tr87,1,epsilon 0.3,0,1000,0,0,,4,0.0,1,0.787,953,24.5,holdout/dqn_novelty_seed1
+DQN novelty,tr87,1,epsilon 0.3,1,1000,0,0,,4,0.0,1,0.75,963,27.9,holdout/dqn_novelty_seed1
+DQN novelty,tr87,1,epsilon 0.3,2,1000,0,0,,4,0.0,1,0.734,969,30.8,holdout/dqn_novelty_seed1
+DQN novelty,tr87,1,epsilon 0.3,3,1000,0,0,,4,0.0,1,0.775,952,34.1,holdout/dqn_novelty_seed1
+DQN novelty,tr87,1,epsilon 0.3,4,1000,0,0,,4,0.0,1,0.754,948,37.3,holdout/dqn_novelty_seed1
+DQN novelty,vc33,1,epsilon 0.3,0,1000,0,0,,63,0.0,70,0.669,50,40.6,holdout/dqn_novelty_seed1
+DQN novelty,vc33,1,epsilon 0.3,1,1000,0,0,,64,0.0,70,0.675,50,45.1,holdout/dqn_novelty_seed1
+DQN novelty,vc33,1,epsilon 0.3,2,1000,0,0,,64,0.0,70,0.673,50,49.0,holdout/dqn_novelty_seed1
+DQN novelty,vc33,1,epsilon 0.3,3,1000,0,0,,64,0.0,70,0.665,50,52.2,holdout/dqn_novelty_seed1
+DQN novelty,vc33,1,epsilon 0.3,4,1000,0,0,,64,0.0,70,0.657,50,55.8,holdout/dqn_novelty_seed1
+DQN novelty,cd82,2,epsilon 0.3,0,1000,0,0,,68,0.35,61,0.522,305,6.8,holdout/dqn_novelty_seed2
+DQN novelty,cd82,2,epsilon 0.3,1,1000,0,0,,69,0.353,61,0.481,268,9.1,holdout/dqn_novelty_seed2
+DQN novelty,cd82,2,epsilon 0.3,2,1000,0,0,,69,0.353,61,0.486,331,11.7,holdout/dqn_novelty_seed2
+DQN novelty,cd82,2,epsilon 0.3,3,1000,0,0,,68,0.353,61,0.521,334,14.5,holdout/dqn_novelty_seed2
+DQN novelty,cd82,2,epsilon 0.3,4,1000,0,0,,69,0.35,61,0.509,266,18.5,holdout/dqn_novelty_seed2
+DQN novelty,tr87,2,epsilon 0.3,0,1000,0,0,,4,0.0,1,0.787,953,22.0,holdout/dqn_novelty_seed2
+DQN novelty,tr87,2,epsilon 0.3,1,1000,0,0,,4,0.0,1,0.755,963,25.3,holdout/dqn_novelty_seed2
+DQN novelty,tr87,2,epsilon 0.3,2,1000,0,0,,4,0.0,1,0.736,969,28.5,holdout/dqn_novelty_seed2
+DQN novelty,tr87,2,epsilon 0.3,3,1000,0,0,,4,0.0,1,0.775,952,32.1,holdout/dqn_novelty_seed2
+DQN novelty,tr87,2,epsilon 0.3,4,1000,0,0,,4,0.0,1,0.76,948,35.4,holdout/dqn_novelty_seed2
+DQN novelty,vc33,2,epsilon 0.3,0,1000,0,0,,63,0.0,7,0.715,50,38.7,holdout/dqn_novelty_seed2
+DQN novelty,vc33,2,epsilon 0.3,1,1000,0,0,,64,0.0,7,0.709,50,42.5,holdout/dqn_novelty_seed2
+DQN novelty,vc33,2,epsilon 0.3,2,1000,0,0,,64,0.0,7,0.72,50,45.8,holdout/dqn_novelty_seed2
+DQN novelty,vc33,2,epsilon 0.3,3,1000,0,0,,64,0.0,7,0.704,50,49.0,holdout/dqn_novelty_seed2
+DQN novelty,vc33,2,epsilon 0.3,4,1000,0,0,,64,0.0,7,0.703,50,52.4,holdout/dqn_novelty_seed2
+"PPO baseline, grid 8",cd82,0,sampled,0,1000,0,0,,69,0.344,30,0.046,413,7.5,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",cd82,0,sampled,1,1000,0,0,,69,0.339,30,0.05,510,12.0,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",cd82,0,sampled,2,1000,0,0,,69,0.343,30,0.037,387,15.9,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",cd82,0,sampled,3,1000,0,0,,69,0.341,49,0.036,407,20.2,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",cd82,0,sampled,4,1000,0,0,,69,0.342,9,0.03,450,24.5,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",tr87,0,sampled,0,1000,0,0,,4,0.0,1,0.268,979,29.3,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",tr87,0,sampled,1,1000,0,0,,4,0.0,2,0.281,978,33.7,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",tr87,0,sampled,2,1000,0,0,,4,0.0,1,0.265,977,38.4,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",tr87,0,sampled,3,1000,0,0,,4,0.0,4,0.276,976,42.9,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",tr87,0,sampled,4,1000,0,0,,4,0.0,4,0.276,981,47.6,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",vc33,0,sampled,0,1000,0,0,,64,0.0,30,0.051,50,51.8,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",vc33,0,sampled,1,1000,0,0,,64,0.0,30,0.053,50,56.6,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",vc33,0,sampled,2,1000,0,0,,64,0.0,30,0.043,50,61.3,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",vc33,0,sampled,3,1000,0,0,,64,0.0,49,0.041,50,65.5,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",vc33,0,sampled,4,1000,0,0,,64,0.0,30,0.036,50,69.8,holdout/ppo_baseline_seed0
+"PPO baseline, grid 8",cd82,1,sampled,0,1000,0,0,,69,0.346,53,0.033,453,7.6,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",cd82,1,sampled,1,1000,0,0,,69,0.344,36,0.029,507,12.0,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",cd82,1,sampled,2,1000,0,0,,69,0.345,40,0.029,463,17.4,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",cd82,1,sampled,3,1000,0,0,,69,0.34,66,0.026,464,21.9,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",cd82,1,sampled,4,1000,0,0,,69,0.343,13,0.025,460,27.4,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",tr87,1,sampled,0,1000,0,0,,4,0.0,1,0.273,979,31.9,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",tr87,1,sampled,1,1000,0,0,,4,0.0,2,0.288,979,36.7,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",tr87,1,sampled,2,1000,0,0,,4,0.0,2,0.267,977,41.3,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",tr87,1,sampled,3,1000,0,0,,4,0.0,2,0.271,975,45.9,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",tr87,1,sampled,4,1000,0,0,,4,0.0,2,0.262,979,50.4,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",vc33,1,sampled,0,1000,0,0,,64,0.0,53,0.037,50,54.8,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",vc33,1,sampled,1,1000,0,0,,64,0.0,36,0.031,50,59.1,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",vc33,1,sampled,2,1000,0,0,,64,0.0,36,0.031,50,63.6,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",vc33,1,sampled,3,1000,0,0,,64,0.0,66,0.032,50,68.1,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",vc33,1,sampled,4,1000,0,0,,64,0.0,42,0.027,50,72.6,holdout/ppo_baseline_seed1
+"PPO baseline, grid 8",cd82,2,sampled,0,1000,0,0,,68,0.348,9,0.057,405,6.8,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",cd82,2,sampled,1,1000,0,0,,69,0.351,15,0.052,427,10.6,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",cd82,2,sampled,2,1000,0,0,,69,0.352,15,0.055,331,14.6,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",cd82,2,sampled,3,1000,0,0,,69,0.351,15,0.048,452,19.1,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",cd82,2,sampled,4,1000,0,0,,69,0.347,15,0.061,433,23.6,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",tr87,2,sampled,0,1000,0,0,,4,0.0,1,0.322,980,28.0,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",tr87,2,sampled,1,1000,0,0,,4,0.0,1,0.281,978,32.6,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",tr87,2,sampled,2,1000,0,0,,4,0.0,1,0.317,977,37.4,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",tr87,2,sampled,3,1000,0,0,,4,0.0,1,0.285,978,42.0,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",tr87,2,sampled,4,1000,0,0,,4,0.0,1,0.296,980,47.3,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",vc33,2,sampled,0,1000,0,0,,64,0.0,15,0.038,50,52.1,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",vc33,2,sampled,1,1000,0,0,,64,0.0,15,0.042,50,56.9,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",vc33,2,sampled,2,1000,0,0,,64,0.0,36,0.049,50,61.3,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",vc33,2,sampled,3,1000,0,0,,64,0.0,15,0.04,50,65.7,holdout/ppo_baseline_seed2
+"PPO baseline, grid 8",vc33,2,sampled,4,1000,0,0,,64,0.0,15,0.047,50,70.0,holdout/ppo_baseline_seed2
+"PPO memory + novelty, grid 16",cd82,0,sampled,0,1000,0,0,,1,0.36,210,1.0,64,6.4,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",cd82,0,sampled,1,1000,0,0,,1,0.36,210,1.0,64,10.3,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",cd82,0,sampled,2,1000,0,0,,1,0.36,210,1.0,64,15.8,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",cd82,0,sampled,3,1000,0,0,,1,0.36,210,1.0,64,22.2,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",cd82,0,sampled,4,1000,0,0,,1,0.36,210,1.0,64,27.4,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",tr87,0,sampled,0,1000,0,0,,4,0.0,1,0.536,973,33.6,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",tr87,0,sampled,1,1000,0,0,,4,0.0,1,0.542,977,39.8,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",tr87,0,sampled,2,1000,0,0,,4,0.0,1,0.533,971,46.4,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",tr87,0,sampled,3,1000,0,0,,4,0.0,1,0.517,974,52.8,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",tr87,0,sampled,4,1000,0,0,,4,0.0,1,0.49,976,59.4,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",vc33,0,sampled,0,1000,0,0,,9,0.0,210,0.984,50,65.2,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",vc33,0,sampled,1,1000,0,0,,12,0.0,210,0.968,50,70.0,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",vc33,0,sampled,2,1000,0,0,,11,0.0,210,0.966,50,75.2,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",vc33,0,sampled,3,1000,0,0,,7,0.0,210,0.983,50,81.3,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",vc33,0,sampled,4,1000,0,0,,8,0.0,210,0.983,50,87.2,holdout/ppo_memory_novelty_seed0
+"PPO memory + novelty, grid 16",cd82,1,sampled,0,1000,0,0,,107,0.36,172,0.334,100,6.4,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",cd82,1,sampled,1,1000,0,0,,102,0.36,172,0.378,117,10.2,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",cd82,1,sampled,2,1000,0,0,,105,0.357,172,0.39,124,15.6,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",cd82,1,sampled,3,1000,0,0,,109,0.359,172,0.365,118,20.5,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",cd82,1,sampled,4,1000,0,0,,100,0.36,172,0.361,100,25.7,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",tr87,1,sampled,0,1000,0,0,,4,0.0,2,0.264,979,31.7,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",tr87,1,sampled,1,1000,0,0,,4,0.0,2,0.291,978,38.0,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",tr87,1,sampled,2,1000,0,0,,4,0.0,2,0.273,976,43.8,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",tr87,1,sampled,3,1000,0,0,,4,0.0,4,0.297,976,49.4,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",tr87,1,sampled,4,1000,0,0,,4,0.0,4,0.299,979,55.8,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",vc33,1,sampled,0,1000,0,0,,160,0.0,172,0.215,119,61.2,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",vc33,1,sampled,1,1000,0,0,,159,0.0,172,0.274,83,67.4,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",vc33,1,sampled,2,1000,0,0,,157,0.0,172,0.268,97,73.5,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",vc33,1,sampled,3,1000,0,0,,153,0.0,172,0.253,104,79.3,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",vc33,1,sampled,4,1000,0,0,,153,0.0,172,0.266,99,85.1,holdout/ppo_memory_novelty_seed1
+"PPO memory + novelty, grid 16",cd82,2,sampled,0,1000,0,0,,196,0.359,34,0.042,188,6.7,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",cd82,2,sampled,1,1000,0,0,,195,0.359,95,0.042,93,10.8,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",cd82,2,sampled,2,1000,0,0,,204,0.358,34,0.045,121,15.4,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",cd82,2,sampled,3,1000,0,0,,201,0.36,34,0.044,81,20.8,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",cd82,2,sampled,4,1000,0,0,,194,0.358,95,0.047,109,27.2,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",tr87,2,sampled,0,1000,0,0,,4,0.0,4,0.322,979,33.3,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",tr87,2,sampled,1,1000,0,0,,4,0.0,4,0.347,978,39.5,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",tr87,2,sampled,2,1000,0,0,,4,0.0,4,0.331,965,45.6,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",tr87,2,sampled,3,1000,0,0,,4,0.0,4,0.371,976,51.7,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",tr87,2,sampled,4,1000,0,0,,4,0.0,4,0.377,980,58.0,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",vc33,2,sampled,0,1000,0,0,,200,0.0,34,0.043,128,64.4,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",vc33,2,sampled,1,1000,0,0,,198,0.0,34,0.046,139,70.6,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",vc33,2,sampled,2,1000,0,0,,195,0.0,34,0.05,163,76.9,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",vc33,2,sampled,3,1000,0,0,,198,0.0,34,0.046,91,83.4,holdout/ppo_memory_novelty_seed2
+"PPO memory + novelty, grid 16",vc33,2,sampled,4,1000,0,0,,197,0.0,34,0.052,155,89.9,holdout/ppo_memory_novelty_seed2
+"PPO novelty, grid 8",cd82,0,sampled,0,1000,0,0,,69,0.345,54,0.041,363,6.8,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",cd82,0,sampled,1,1000,0,0,,68,0.345,63,0.053,457,11.1,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",cd82,0,sampled,2,1000,0,0,,69,0.352,63,0.043,307,15.2,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",cd82,0,sampled,3,1000,0,0,,68,0.345,63,0.044,397,19.9,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",cd82,0,sampled,4,1000,0,0,,68,0.344,63,0.052,372,25.0,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",tr87,0,sampled,0,1000,0,0,,4,0.0,1,0.284,979,29.8,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",tr87,0,sampled,1,1000,0,0,,4,0.0,2,0.298,978,34.5,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",tr87,0,sampled,2,1000,0,0,,4,0.0,1,0.274,977,39.1,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",tr87,0,sampled,3,1000,0,0,,4,0.0,2,0.279,978,43.9,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",tr87,0,sampled,4,1000,0,0,,4,0.0,2,0.273,980,48.5,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",vc33,0,sampled,0,1000,0,0,,64,0.0,13,0.037,50,52.8,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",vc33,0,sampled,1,1000,0,0,,63,0.0,60,0.041,50,57.7,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",vc33,0,sampled,2,1000,0,0,,64,0.0,63,0.037,50,63.0,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",vc33,0,sampled,3,1000,0,0,,64,0.0,13,0.043,50,68.5,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",vc33,0,sampled,4,1000,0,0,,64,0.0,22,0.051,50,72.8,holdout/ppo_novelty_seed0
+"PPO novelty, grid 8",cd82,1,sampled,0,1000,0,0,,67,0.346,33,0.085,422,5.9,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",cd82,1,sampled,1,1000,0,0,,69,0.35,33,0.096,358,9.4,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",cd82,1,sampled,2,1000,0,0,,68,0.346,33,0.085,394,14.3,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",cd82,1,sampled,3,1000,0,0,,69,0.349,33,0.093,375,18.5,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",cd82,1,sampled,4,1000,0,0,,69,0.349,33,0.093,331,23.3,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",tr87,1,sampled,0,1000,0,0,,4,0.0,2,0.273,980,28.9,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",tr87,1,sampled,1,1000,0,0,,4,0.0,2,0.295,980,34.3,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",tr87,1,sampled,2,1000,0,0,,4,0.0,2,0.281,974,40.5,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",tr87,1,sampled,3,1000,0,0,,4,0.0,4,0.303,977,45.4,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",tr87,1,sampled,4,1000,0,0,,4,0.0,4,0.292,979,50.1,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",vc33,1,sampled,0,1000,0,0,,62,0.0,33,0.087,50,55.1,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",vc33,1,sampled,1,1000,0,0,,64,0.0,33,0.099,50,60.2,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",vc33,1,sampled,2,1000,0,0,,63,0.0,33,0.084,50,64.2,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",vc33,1,sampled,3,1000,0,0,,63,0.0,33,0.095,50,69.7,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",vc33,1,sampled,4,1000,0,0,,64,0.0,33,0.093,50,75.0,holdout/ppo_novelty_seed1
+"PPO novelty, grid 8",cd82,2,sampled,0,1000,0,0,,69,0.346,53,0.033,454,5.9,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",cd82,2,sampled,1,1000,0,0,,69,0.343,36,0.029,525,9.2,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",cd82,2,sampled,2,1000,0,0,,69,0.346,36,0.03,456,14.0,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",cd82,2,sampled,3,1000,0,0,,69,0.344,16,0.029,451,18.4,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",cd82,2,sampled,4,1000,0,0,,69,0.342,63,0.027,446,23.5,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",tr87,2,sampled,0,1000,0,0,,4,0.0,3,0.26,978,28.3,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",tr87,2,sampled,1,1000,0,0,,4,0.0,2,0.28,975,33.7,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",tr87,2,sampled,2,1000,0,0,,4,0.0,3,0.258,977,38.6,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",tr87,2,sampled,3,1000,0,0,,4,0.0,2,0.272,975,44.2,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",tr87,2,sampled,4,1000,0,0,,4,0.0,4,0.262,980,49.6,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",vc33,2,sampled,0,1000,0,0,,64,0.0,53,0.037,50,53.8,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",vc33,2,sampled,1,1000,0,0,,63,0.0,63,0.043,50,59.0,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",vc33,2,sampled,2,1000,0,0,,64,0.0,15,0.053,50,63.2,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",vc33,2,sampled,3,1000,0,0,,64,0.0,29,0.036,50,68.4,holdout/ppo_novelty_seed2
+"PPO novelty, grid 8",vc33,2,sampled,4,1000,0,0,,64,0.0,63,0.04,50,73.6,holdout/ppo_novelty_seed2

@@ -1,0 +1,100 @@
+condition,game,training_seed,episodes,decisions,hours,training_episodes_with_level,click_grid,novelty_bonus,action_memory,no_change_masking,device,python,torch,gpu
+DQN baseline,dc22,0,51,50623,0.617,0,,,,,,,,
+DQN baseline,dc22,1,51,50624,0.612,0,,,,,,,,
+DQN baseline,dc22,2,51,50623,0.61,0,,,,,,,,
+DQN baseline,ft09,0,51,50941,0.614,38,,,,,,,,
+DQN baseline,ft09,1,51,50920,0.626,33,,,,,,,,
+DQN baseline,ft09,2,51,50933,0.617,32,,,,,,,,
+DQN baseline,g50t,0,51,50642,0.609,0,,,,,,,,
+DQN baseline,g50t,1,51,50640,0.61,2,,,,,,,,
+DQN baseline,g50t,2,51,50639,0.61,0,,,,,,,,
+DQN baseline,m0r0,0,51,50694,0.603,0,,,,,,,,
+DQN baseline,m0r0,1,51,50694,0.606,0,,,,,,,,
+DQN baseline,m0r0,2,51,50694,0.609,0,,,,,,,,
+DQN novelty,dc22,0,51,50623,0.581,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,dc22,1,51,50623,0.595,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,dc22,2,51,50627,0.582,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,ft09,0,51,50950,0.636,40,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,ft09,1,51,50916,0.618,34,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,ft09,2,51,50941,0.607,34,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,g50t,0,51,50643,0.589,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,g50t,1,51,50643,0.595,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,g50t,2,51,50642,0.614,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,m0r0,0,51,50694,0.592,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,m0r0,1,51,50694,0.582,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN novelty,m0r0,2,51,50694,0.585,0,8,0.01,,False,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,dc22,0,51,50611,0.577,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,dc22,1,51,50622,0.595,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,dc22,2,51,50619,0.574,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,ft09,0,51,50907,0.589,39,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,ft09,1,51,50917,0.585,40,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,ft09,2,51,50916,0.583,44,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,g50t,0,51,50639,0.59,1,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,g50t,1,51,50639,0.587,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,g50t,2,51,50642,0.604,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,m0r0,0,51,50694,0.591,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,m0r0,1,51,50694,0.577,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN no-change memory,m0r0,2,51,50694,0.587,0,8,0.0,,True,cpu,3.12.10,2.14.1+cu130,
+DQN novelty + memory,ft09,0,51,50899,0.603,41,8,0.01,,True,cpu,3.12.10,2.14.1+cu130,
+DQN novelty + memory,ft09,1,51,50878,0.607,29,8,0.01,,True,cpu,3.12.10,2.14.1+cu130,
+DQN novelty + memory,ft09,2,51,50949,0.602,48,8,0.01,,True,cpu,3.12.10,2.14.1+cu130,
+"PPO baseline, grid 8",dc22,0,51,50637,0.115,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",dc22,1,51,50641,0.105,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",dc22,2,51,50638,0.1,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",ft09,0,51,50960,0.108,2,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",ft09,1,51,50883,0.108,4,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",ft09,2,51,50916,0.118,14,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",g50t,0,51,50643,0.102,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",g50t,1,51,50639,0.107,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",g50t,2,51,50643,0.103,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",m0r0,0,51,50694,0.098,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",m0r0,1,51,50694,0.097,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO baseline, grid 8",m0r0,2,51,50694,0.097,0,8,,,,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",dc22,0,51,50639,0.105,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",dc22,1,51,50641,0.107,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",dc22,2,51,50642,0.102,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",ft09,0,51,50909,0.141,3,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",ft09,1,51,50912,0.151,20,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",ft09,2,51,50893,0.151,20,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",g50t,0,51,50643,0.108,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",g50t,1,51,50643,0.107,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",g50t,2,51,50641,0.106,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",m0r0,0,51,50694,0.099,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",m0r0,1,51,50694,0.102,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 8",m0r0,2,51,50694,0.101,0,8,0.01,,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",dc22,0,51,50639,0.106,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",dc22,1,51,50642,0.112,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",dc22,2,51,50634,0.139,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",ft09,0,51,50989,0.112,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",ft09,1,51,50944,0.113,6,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",ft09,2,51,50939,0.116,3,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",g50t,0,51,50643,0.138,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",g50t,1,51,50640,0.144,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",g50t,2,51,50643,0.14,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",m0r0,0,51,50694,0.134,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",m0r0,1,51,50694,0.142,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO novelty, grid 16 control",m0r0,2,51,50694,0.133,0,16,0.01,False,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",dc22,0,51,50630,0.119,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",dc22,1,51,50623,0.17,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",dc22,2,51,50633,0.171,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",ft09,0,51,50951,0.127,3,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",ft09,1,51,50960,0.127,2,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",ft09,2,51,50909,0.125,4,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",g50t,0,51,50641,0.163,2,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",g50t,1,51,50643,0.165,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",g50t,2,51,50641,0.164,1,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",m0r0,0,51,50694,0.156,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",m0r0,1,51,50694,0.156,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory + novelty, grid 16",m0r0,2,51,50694,0.155,0,16,0.01,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",dc22,0,51,50622,0.131,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",dc22,1,51,50631,0.167,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",dc22,2,51,50636,0.165,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",ft09,0,51,50975,0.126,4,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",ft09,1,51,50969,0.132,2,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",ft09,2,51,50945,0.127,1,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",g50t,0,51,50643,0.164,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",g50t,1,51,50643,0.163,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",g50t,2,51,50642,0.167,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",m0r0,0,51,50694,0.153,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",m0r0,1,51,50694,0.153,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU
+"PPO memory only, grid 16",m0r0,2,51,50694,0.154,0,16,0.0,True,False,cuda,3.14.3,2.14.1+cu130,NVIDIA GeForce RTX 3050 Laptop GPU

@@ -1,0 +1,259 @@
+split,condition,game,training_seed,eval_policy,episodes,episodes_with_level,levels,wins,actions
+development,DQN baseline,dc22,0,greedy,1,0,0,0,1000
+development,DQN baseline,dc22,0,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,dc22,1,greedy,1,0,0,0,1000
+development,DQN baseline,dc22,1,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,dc22,2,greedy,1,0,0,0,1000
+development,DQN baseline,dc22,2,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,dc22,0,greedy,1,0,0,0,1000
+development,DQN novelty,dc22,0,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,dc22,1,greedy,1,0,0,0,1000
+development,DQN novelty,dc22,1,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,dc22,2,greedy,1,0,0,0,1000
+development,DQN novelty,dc22,2,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,dc22,0,greedy,1,0,0,0,1000
+development,DQN no-change memory,dc22,0,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,dc22,1,greedy,1,0,0,0,1000
+development,DQN no-change memory,dc22,1,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,dc22,2,greedy,1,0,0,0,1000
+development,DQN no-change memory,dc22,2,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,g50t,0,greedy,1,0,0,0,1000
+development,DQN baseline,g50t,0,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,g50t,1,greedy,1,0,0,0,1000
+development,DQN baseline,g50t,1,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,g50t,2,greedy,1,0,0,0,1000
+development,DQN baseline,g50t,2,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,g50t,0,greedy,1,0,0,0,1000
+development,DQN novelty,g50t,0,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,g50t,1,greedy,1,0,0,0,1000
+development,DQN novelty,g50t,1,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,g50t,2,greedy,1,0,0,0,1000
+development,DQN novelty,g50t,2,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,g50t,0,greedy,1,0,0,0,1000
+development,DQN no-change memory,g50t,0,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,g50t,1,greedy,1,0,0,0,1000
+development,DQN no-change memory,g50t,1,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,g50t,2,greedy,1,0,0,0,1000
+development,DQN no-change memory,g50t,2,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,m0r0,0,greedy,1,0,0,0,1000
+development,DQN baseline,m0r0,0,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,m0r0,1,greedy,1,0,0,0,1000
+development,DQN baseline,m0r0,1,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline,m0r0,2,greedy,1,0,0,0,1000
+development,DQN baseline,m0r0,2,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,m0r0,0,greedy,1,0,0,0,1000
+development,DQN novelty,m0r0,0,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,m0r0,1,greedy,1,0,0,0,1000
+development,DQN novelty,m0r0,1,epsilon 0.3,10,0,0,0,10000
+development,DQN novelty,m0r0,2,greedy,1,0,0,0,1000
+development,DQN novelty,m0r0,2,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,m0r0,0,greedy,1,0,0,0,1000
+development,DQN no-change memory,m0r0,0,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,m0r0,1,greedy,1,0,0,0,1000
+development,DQN no-change memory,m0r0,1,epsilon 0.3,10,0,0,0,10000
+development,DQN no-change memory,m0r0,2,greedy,1,0,0,0,1000
+development,DQN no-change memory,m0r0,2,epsilon 0.3,10,0,0,0,10000
+development,DQN baseline + evaluation-time memory,ft09,0,epsilon 0.3,20,19,19,0,20000
+development,DQN baseline + evaluation-time memory,ft09,1,epsilon 0.3,20,20,20,0,20000
+development,DQN baseline + evaluation-time memory,ft09,2,epsilon 0.3,20,8,8,0,20000
+development,DQN baseline,ft09,0,epsilon 0.3,20,17,17,0,20000
+development,DQN baseline,ft09,1,epsilon 0.3,20,20,20,0,20000
+development,DQN baseline,ft09,2,epsilon 0.3,20,5,5,0,20000
+development,DQN novelty,ft09,0,greedy,1,0,0,0,1000
+development,DQN novelty,ft09,0,epsilon 0.3,20,7,7,0,20000
+development,DQN novelty,ft09,1,greedy,1,0,0,0,1000
+development,DQN novelty,ft09,1,epsilon 0.3,20,1,1,0,20000
+development,DQN novelty,ft09,2,greedy,1,0,0,0,1000
+development,DQN novelty,ft09,2,epsilon 0.3,20,5,5,0,20000
+development,DQN no-change memory,ft09,0,greedy,1,0,0,0,1000
+development,DQN no-change memory,ft09,0,epsilon 0.3,20,3,3,0,20000
+development,DQN no-change memory,ft09,1,greedy,1,0,0,0,1000
+development,DQN no-change memory,ft09,1,epsilon 0.3,20,17,17,0,20000
+development,DQN no-change memory,ft09,2,greedy,1,0,0,0,1000
+development,DQN no-change memory,ft09,2,epsilon 0.3,20,5,5,0,20000
+development,"DQN, no-change mask (earlier diagnostic)",ft09,0,not recorded,20,0,0,0,20000
+development,"DQN, no-change mask (earlier diagnostic)",ft09,1,not recorded,20,0,0,0,20000
+development,"DQN, no-change mask (earlier diagnostic)",ft09,2,not recorded,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",dc22,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",dc22,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",dc22,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",dc22,1,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",dc22,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",dc22,2,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",ft09,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",ft09,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",ft09,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",ft09,1,sampled,20,9,9,0,20000
+development,"PPO novelty, grid 16 control",ft09,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",ft09,2,sampled,20,1,1,0,20000
+development,"PPO novelty, grid 16 control",g50t,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",g50t,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",g50t,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",g50t,1,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",g50t,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",g50t,2,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",m0r0,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",m0r0,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",m0r0,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",m0r0,1,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",m0r0,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 16 control",m0r0,2,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",dc22,0,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",dc22,0,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",dc22,1,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",dc22,1,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",dc22,2,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",dc22,2,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",ft09,0,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",ft09,0,sampled,20,1,1,0,20000
+development,"PPO memory + novelty, grid 16",ft09,1,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",ft09,1,sampled,20,1,1,0,20000
+development,"PPO memory + novelty, grid 16",ft09,2,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",ft09,2,sampled,20,1,1,0,20000
+development,"PPO memory + novelty, grid 16",g50t,0,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",g50t,0,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",g50t,1,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",g50t,1,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",g50t,2,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",g50t,2,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",m0r0,0,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",m0r0,0,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",m0r0,1,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",m0r0,1,sampled,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",m0r0,2,greedy,20,0,0,0,20000
+development,"PPO memory + novelty, grid 16",m0r0,2,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",dc22,0,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",dc22,0,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",dc22,1,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",dc22,1,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",dc22,2,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",dc22,2,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",ft09,0,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",ft09,0,sampled,20,2,2,0,20000
+development,"PPO memory only, grid 16",ft09,1,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",ft09,1,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",ft09,2,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",ft09,2,sampled,20,4,4,0,20000
+development,"PPO memory only, grid 16",g50t,0,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",g50t,0,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",g50t,1,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",g50t,1,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",g50t,2,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",g50t,2,sampled,20,1,1,0,20000
+development,"PPO memory only, grid 16",m0r0,0,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",m0r0,0,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",m0r0,1,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",m0r0,1,sampled,20,0,0,0,20000
+development,"PPO memory only, grid 16",m0r0,2,greedy,20,0,0,0,20000
+development,"PPO memory only, grid 16",m0r0,2,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",dc22,0,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",dc22,1,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",dc22,2,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",ft09,0,sampled,20,2,2,0,20000
+development,"PPO baseline, grid 8",ft09,1,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",ft09,2,sampled,20,3,3,0,20000
+development,"PPO baseline, grid 8",g50t,0,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",g50t,1,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",g50t,2,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",m0r0,0,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",m0r0,1,sampled,20,0,0,0,20000
+development,"PPO baseline, grid 8",m0r0,2,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",dc22,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",dc22,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",dc22,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",dc22,1,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",dc22,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",dc22,2,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",ft09,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",ft09,0,sampled,20,4,4,0,20000
+development,"PPO novelty, grid 8",ft09,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",ft09,1,sampled,20,4,4,0,20000
+development,"PPO novelty, grid 8",ft09,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",ft09,2,sampled,20,20,20,0,20000
+development,"PPO novelty, grid 8",g50t,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",g50t,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",g50t,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",g50t,1,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",g50t,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",g50t,2,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",m0r0,0,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",m0r0,0,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",m0r0,1,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",m0r0,1,sampled,20,0,0,0,20000
+development,"PPO novelty, grid 8",m0r0,2,greedy,20,0,0,0,20000
+development,"PPO novelty, grid 8",m0r0,2,sampled,20,0,0,0,20000
+development,DQN novelty + memory,ft09,0,epsilon 0.3,20,19,19,0,20000
+development,Random reference,dc22,0,uniform legal,20,0,0,0,20000
+development,Random reference,ft09,0,uniform legal,20,2,2,0,20000
+development,Random reference,g50t,0,uniform legal,20,0,0,0,20000
+development,Random reference,m0r0,0,uniform legal,20,0,0,0,20000
+development,Random (earlier run),ft09,0,uniform legal,20,5,5,0,20000
+development,Random + no-change mask (earlier run),ft09,0,uniform legal,20,9,9,0,20000
+development,DQN novelty + memory,ft09,1,epsilon 0.3,20,8,8,0,20000
+development,Random reference,dc22,1,uniform legal,20,0,0,0,20000
+development,Random reference,ft09,1,uniform legal,20,5,5,0,20000
+development,Random reference,g50t,1,uniform legal,20,0,0,0,20000
+development,Random reference,m0r0,1,uniform legal,20,0,0,0,20000
+development,Random (earlier run),ft09,1,uniform legal,20,9,9,0,20000
+development,Random + no-change mask (earlier run),ft09,1,uniform legal,20,7,7,0,20000
+development,DQN novelty + memory,ft09,2,epsilon 0.3,20,18,18,0,20000
+development,Random reference,dc22,2,uniform legal,20,0,0,0,20000
+development,Random reference,ft09,2,uniform legal,20,8,8,0,20000
+development,Random reference,g50t,2,uniform legal,20,0,0,0,20000
+development,Random reference,m0r0,2,uniform legal,20,0,0,0,20000
+development,Random (earlier run),ft09,2,uniform legal,20,8,8,0,20000
+development,Random + no-change mask (earlier run),ft09,2,uniform legal,20,9,9,0,20000
+held-out,DQN baseline,cd82,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,tr87,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,vc33,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,cd82,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,tr87,1,epsilon 0.3,5,1,1,0,5000
+held-out,DQN baseline,vc33,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,cd82,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,tr87,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN baseline,vc33,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,cd82,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,tr87,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,vc33,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,cd82,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,tr87,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,vc33,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,cd82,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,tr87,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN no-change memory,vc33,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,cd82,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,tr87,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,vc33,0,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,cd82,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,tr87,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,vc33,1,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,cd82,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,tr87,2,epsilon 0.3,5,0,0,0,5000
+held-out,DQN novelty,vc33,2,epsilon 0.3,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",cd82,0,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",tr87,0,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",vc33,0,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",cd82,1,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",tr87,1,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",vc33,1,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",cd82,2,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",tr87,2,sampled,5,0,0,0,5000
+held-out,"PPO baseline, grid 8",vc33,2,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",cd82,0,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",tr87,0,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",vc33,0,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",cd82,1,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",tr87,1,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",vc33,1,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",cd82,2,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",tr87,2,sampled,5,0,0,0,5000
+held-out,"PPO memory + novelty, grid 16",vc33,2,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",cd82,0,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",tr87,0,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",vc33,0,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",cd82,1,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",tr87,1,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",vc33,1,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",cd82,2,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",tr87,2,sampled,5,0,0,0,5000
+held-out,"PPO novelty, grid 8",vc33,2,sampled,5,0,0,0,5000

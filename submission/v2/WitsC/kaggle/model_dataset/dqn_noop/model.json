@@ -1,0 +1,16 @@
+{
+  "name": "dqn_noop",
+  "algorithm": "dqn",
+  "click_grid": 8,
+  "action_memory": false,
+  "noop_masking": true,
+  "eval_epsilon": 0.3,
+  "training_game": "ft09",
+  "source": "runs/dqn_archive/runs_imp2/ft09/dqn_seed1/dqn.pt",
+  "source_sha256": "862cabbefd2ac475e27750479b84462817c6a28d4a3154c9593dfb98b880fa08",
+  "seed": 1,
+  "sampling_seed": 100,
+  "max_actions": 1000,
+  "weights_sha256": "0e345350ff0837a496d99ddb1e072889a87a203e3c9a45d2ddd236429faf6c57",
+  "selection": "Development first-level success; tie broken by lowest seed. No held-out selection."
+}
