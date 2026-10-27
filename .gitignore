@@ -11,3 +11,9 @@ reports/course_report/latex/*.aux
 reports/course_report/latex/*.out
 reports/course_report/latex/*.xdv
 submission/*.zip
+submission/v2/*.zip
+submission/v2/report_source/*.log
+submission/v2/report_source/*.aux
+submission/v2/report_source/*.out
+submission/v2/report_source/*.xdv
+submission/v2/report_source/main.pdf

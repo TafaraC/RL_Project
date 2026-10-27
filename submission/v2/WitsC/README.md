@@ -11,7 +11,7 @@ Nathan Le Roux (2717495), Tafara Chibanda (2683459), Samuel Snyman (2677730), Jo
 | `WitsC_Report.pdf` | The project report. Start here. |
 | `kaggle/` | Competition notebooks and the model weights they load. `kaggle/README.md` explains how to run them. |
 | `source/` | Full project code: environment adapter, DQN and PPO agents, improvements, experiment scripts and tests. |
-| `evidence/` | Every evaluation and training episode behind the report, as five tables. `evidence/README.md` explains them. |
+| `evidence/` | Every evaluation and training episode behind the report, as seven tables. `evidence/README.md` explains them. |
 | `paper_track_writeup.md` | Condensed write-up (under 1,500 words) for the ARC Prize 2026 Paper Track. |
 | `CONTRIBUTIONS.md` | Each member's contribution, AI assistance and reused resources. |
 
@@ -26,10 +26,12 @@ The nominated checkpoint was chosen on development results before any held-out g
 
 ## Results in brief
 
-- Best development result: on ft09, DQN with epsilon 0.3 completes a level in 42/60 episodes. Novelty-trained PPO completes one in 28/60.
-- ARC-AGI-3 score (RHAE, computed locally): at most 0.36% on ft09 and below 0.01% on the held-out games. Agents need hundreds of actions where a human needs 43.
+- On ft09, DQN baseline with epsilon 0.3 completes a level in 42/60 episodes; combined novelty and memory reaches 45/60. Novelty-trained PPO completes one in 28/60.
+- ARC-AGI-3 score (RHAE, computed locally): the best pooled trained condition reaches 0.36% on ft09 (0.54% with evaluation-time memory) and below 0.01% on the held-out games. Agents need hundreds of actions where a human needs 43.
 - No agent wins a full game.
 - On the three held-out games, one DQN baseline episode completes one level. Every other episode completes none.
 - The original 8-by-8 click grid cannot reach any tile on ft09 level 2. This limits every 8-by-8 agent, whatever its policy.
 
 See the report for the full analysis.
+
+Official Kaggle execution and Paper Track publication are pending. There is no submission ID, submission timestamp, official score, notebook URL or Paper Track publication URL yet. The local RHAE results are reconstructed from saved episodes, not returned by the competition gateway.

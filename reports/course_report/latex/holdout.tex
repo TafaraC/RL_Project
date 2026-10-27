@@ -1,17 +1,17 @@
-The final frozen transfer evaluation uses all three ft09-trained seeds of each
-algorithm's baseline, novelty and final memory stage, unchanged on cd82, tr87 and
-vc33. There are five rollouts per checkpoint per game, with action-sampling seeds
-100--104 and the same 1,000-action budget: 270 episodes across six stages.
-We reduced rollouts from 20 to five for this deadline-limited transfer check,
-retaining three independent training seeds. No held-out outcome changed the
-model selection or parameters. This tests transfer from a single donor game,
-not online adaptation or multi-game training.
+The final transfer evaluation takes all three ft09-trained seeds of each
+algorithm's baseline, novelty and final memory stage (DQN no-change memory;
+PPO memory + novelty) and runs them unchanged on
+cd82, tr87 and vc33. Each checkpoint plays five rollouts per game, with sampling
+seeds 100--104 and the same 1,000-action budget: 270 episodes across six stages.
+Five rollouts rather than 20 keep the evaluation cost manageable while retaining
+all three training seeds. No held-out outcome influenced model selection or
+parameters. This tests transfer from a single training game, not online
+adaptation or multi-game training.
 
 All PPO stages and both improved DQN stages complete zero levels on all three
 held-out games. DQN baseline seed 1 completes one tr87 level in one of five
 rollouts (one of 15 pooled baseline rollouts on tr87); its other seeds complete
-none. All agents fail to win any game and consume their full action budgets.
-The isolated completion does not establish reliable generalisation. The
-training-seed-level results and frozen protocol are provided in the evidence
-folder. A same-game development success therefore offers little assurance of
-transfer to a new puzzle under this protocol.
+none. No agent wins a game, and every episode uses its full action budget. The
+single completion does not establish generalisation. Development success on one
+game therefore gives little assurance of transfer to a new puzzle under this
+protocol. Per-seed results and the frozen protocol are in the evidence folder.

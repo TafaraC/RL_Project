@@ -1,3 +1,4 @@
 ImprovementsDQN(v1)runs.zip filter=lfs diff=lfs merge=lfs -text
 # Preserve the audited delivery bytes, including CSV/TeX line endings.
 submission/WitsC/** -text
+submission/v2/WitsC/** -text

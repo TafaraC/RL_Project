@@ -1,3 +1,7 @@
+## Latest deliverable: cleaned v2
+
+The current submission is `submission/v2/WitsC.zip`, built from the user's simpler `v2/WitsC` layout. It supersedes the earlier package described below. The report uses the assignment heading and direct wording, retains v2 local RHAE results and is eight pages including references. Final checks: 49 packaged-source tests passed; 258 local RHAE rows reproduced; all notebook/model bytes match validated exports; all report pages visually reviewed. The package contains no checksum manifest. Internal archive checks are saved under ignored `runs/`. See `submission/v2/FINAL_CHECK.md` for requirement coverage and outstanding external submission evidence.
+
 # WitsC submission packaging status
 
 Updated 27 October 2026. Active branch: `codex/kaggle-moodle-package`.

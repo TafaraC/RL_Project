@@ -31,3 +31,9 @@ All agents were trained on ft09 and play up to 1,000 actions per game. For each 
 6. **Submit.** Choose Submit to Competition and select `submission.parquet`. The score comes from the competition's rerun. The file written during the ordinary run is only a placeholder.
 
 The inference code (`source/kaggle/my_agent.py` and `runtime.py`) is embedded in each notebook, so no other download is needed. Running the code needs only `arc-agi` and `python-dotenv` from the competition's offline packages, plus Kaggle's preinstalled PyTorch, NumPy and pandas.
+
+## Runtime checks
+
+Local training used Windows PyTorch 2.14.1+cu130. Kaggle uses its own Linux/Python environment and installed PyTorch; do not upload or install the Windows wheel. The notebooks use float32 NumPy weights and ordinary PyTorch layers. Kaggle must provide NumPy, PyTorch, pandas and parquet support. Missing CUDA is a fatal error.
+
+All nine notebooks passed local CUDA inference and official Agent-loop checks on the development games. The nominated notebook also wrote and read its commit-mode parquet locally. Competition offline installation, the Kaggle Linux image and the live gateway have not been tested. No official score or submission identifier is available.

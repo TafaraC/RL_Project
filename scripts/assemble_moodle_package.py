@@ -30,8 +30,8 @@ def main():
         shutil.copyfile(ROOT/name,OUT/'source'/name)
     copy_tree(ROOT/'kaggle',OUT/'source/kaggle',{'.py','.md'})
     shutil.copyfile(ROOT/'kaggle/README.md',OUT/'kaggle/EXECUTION_GUIDE.md')
-    # All model parameters are embedded in notebooks; duplicate weight assets
-    # are retained in the repository's kaggle/assets, not the Moodle package.
+    # Notebook source is embedded; weights are supplied in model_dataset.zip.
+    # Do not duplicate unpacked assets in the Moodle package.
     assert not (OUT/'kaggle/assets').exists()
     for p in OUT.rglob('*'):
         if p.is_file():
