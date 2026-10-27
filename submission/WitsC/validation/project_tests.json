@@ -1,0 +1,7 @@
+{
+  "date_sast": "2026-10-27",
+  "command": "python -m pytest -q tests --basetemp=runs/pytest-submission-final2",
+  "result": "45 passed",
+  "elapsed_seconds": 14.42,
+  "note": "An initial unscoped pytest collected downloaded upstream framework tests. pytest.ini now restricts collection to this project's tests."
+}

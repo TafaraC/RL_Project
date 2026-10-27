@@ -1,6 +1,6 @@
 # WitsC Paper Track handoff
 
-Prepared 26 October 2026. `WRITEUP.md` is the concise paper text; `EVIDENCE.md` and `verified_results.csv` preserve numerical provenance. No submission has been made.
+Updated 27 October 2026. `WRITEUP.md` is the concise paper text; `EVIDENCE.md` and `verified_results.csv` preserve PPO numerical provenance. Complete DQN and held-out evidence is in `submission/WitsC/evidence`. No external Paper Track submission has been made.
 
 ## Submission route
 
@@ -8,15 +8,15 @@ On 27 October 2026, the team clarified that an external GitHub link is accepted 
 
 Verification note: the publicly accessible [Paper Prize page](https://arcprize.org/competitions/2026/paper), checked on 27 October, still states that a corresponding Kaggle code submission is required. The current Kaggle submission-form requirements could not be independently retrieved. The team's reported submission route and the public prize-eligibility wording therefore remain distinct; successful write-up publication should not itself be represented as confirmed prize eligibility.
 
-Our frozen evaluations reuse development games on which agents trained. The write-up labels them accordingly. Held-out testing and official scoring remain absent, independently of how the code is linked.
+Development evaluations reuse games on which agents trained. A separate frozen held-out evaluation is now complete (270 episodes). No official score exists. The lecturer has requested the complete Kaggle package through Moodle and will determine whether proxy scoring is permitted; the final package records that route separately from Paper Track publication.
 
 ## Information still needed for publication
 
 - Kaggle account/handle, registered team identity and permitted submission route.
 - External code link: https://github.com/TafaraC/RL_Project. Include an official score only if one actually exists.
 - Paper Track write-up URL after publication.
-- Final course report attachment/link: the concise write-up does not replace the separate RLC-format report.
-- Team review of attribution, AI disclosure and source-informed diagnostics; student email addresses for the course report.
+- Attach/link the course report supplied in the Moodle package.
+- Team review of attribution, AI disclosure and source-informed diagnostics. Student emails use Wits' published student-number convention.
 
 ## Files and verification
 
@@ -26,7 +26,7 @@ Our frozen evaluations reuse development games on which agents trained. The writ
 - `ft09_diagnostic.png`: visual explanation from recorded gameplay, optional illustration.
 - `python scripts/build_paper_evidence.py`: regenerate the evidence from local run files without launching training or evaluation.
 
-Raw run files and checkpoints are local artifacts and may be ignored by Git. The repository link alone does not distribute those artifacts; attach the exported CSV and preserve raw logs/checkpoints when assembling the final course archive. Historical DQN/random figures were not promoted into a matched results table because their complete comparable evidence was unavailable.
+Published notebooks now include a separate model dataset containing all required weights; attach it in Kaggle. Complete DQN archive recovery enabled the updated comparison; historical evaluation configuration gaps remain disclosed. Per-episode evaluation CSVs, training logs, configuration records and held-out evidence are included in the final package.
 
 ## Contribution statement
 

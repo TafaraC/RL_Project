@@ -1,0 +1,16 @@
+experiment,game,episodes,successes,wins,actions,source
+dqn_combined_seed0,ft09,20,19,0,20000,supplement/dqn_combined_seed0/episodes.csv
+dqn_combined_seed1,ft09,20,8,0,20000,supplement/dqn_combined_seed1/episodes.csv
+dqn_combined_seed2,ft09,20,18,0,20000,supplement/dqn_combined_seed2/episodes.csv
+random_seed0,dc22,20,0,0,20000,supplement/random/random_seed0/episodes.csv
+random_seed0,ft09,20,2,0,20000,supplement/random/random_seed0/episodes.csv
+random_seed0,g50t,20,0,0,20000,supplement/random/random_seed0/episodes.csv
+random_seed0,m0r0,20,0,0,20000,supplement/random/random_seed0/episodes.csv
+random_seed1,dc22,20,0,0,20000,supplement/random/random_seed1/episodes.csv
+random_seed1,ft09,20,5,0,20000,supplement/random/random_seed1/episodes.csv
+random_seed1,g50t,20,0,0,20000,supplement/random/random_seed1/episodes.csv
+random_seed1,m0r0,20,0,0,20000,supplement/random/random_seed1/episodes.csv
+random_seed2,dc22,20,0,0,20000,supplement/random/random_seed2/episodes.csv
+random_seed2,ft09,20,8,0,20000,supplement/random/random_seed2/episodes.csv
+random_seed2,g50t,20,0,0,20000,supplement/random/random_seed2/episodes.csv
+random_seed2,m0r0,20,0,0,20000,supplement/random/random_seed2/episodes.csv

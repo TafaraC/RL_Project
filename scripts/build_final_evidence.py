@@ -71,6 +71,24 @@ def main():
                 actions=sum(int(r['actions_used']) for r in group)))
     with (OUT/'holdout_results.csv').open('w',newline='') as f:
         w=csv.DictWriter(f,fieldnames=list(held[0]));w.writeheader();w.writerows(held)
+    supplement=ROOT/'runs/final_supplement_20261027'
+    assert json.loads((supplement/'status.json').read_text())['state']=='complete'
+    supplemental=[]
+    for p in sorted(supplement.rglob('episodes.csv')):
+        data=read(p)
+        target=OUT/'supplement'/p.relative_to(supplement)
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copyfile(p,target)
+        if (p.parent/'config.json').exists():shutil.copyfile(p.parent/'config.json',target.parent/'config.json')
+        for game in sorted({r['game'] for r in data}):
+            group=[r for r in data if r['game']==game]
+            assert len(group)==20
+            supplemental.append(dict(experiment=p.parent.name,game=game,episodes=len(group),
+                successes=sum(int(r['levels_completed'])>0 for r in group),
+                wins=sum(int(r['won']) for r in group),actions=sum(int(r['actions_used']) for r in group),
+                source=target.relative_to(OUT).as_posix()))
+    with (OUT/'supplement_results.csv').open('w',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(supplemental[0]));w.writeheader();w.writerows(supplemental)
     shutil.copytree(ROOT/'reports/paper_track',OUT/'ppo',dirs_exist_ok=True)
     holdout=ROOT/'runs/final_holdout_20261027'
     if (holdout/'protocol.json').exists():
@@ -98,7 +116,7 @@ def main():
     fig,axes=plt.subplots(1,2,figsize=(10,3.4),layout='constrained')
     for ax,prefix in zip(axes,['DQN','PPO']):
         for stage in stages:
-            if not stage.startswith(prefix) or 'ft09 only' in stage: continue
+            if not stage.startswith(prefix): continue
             curves=[]
             for r in training:
                 if r['stage']==stage and r['game']=='ft09':
@@ -109,14 +127,14 @@ def main():
             if curves:
                 length=min(len(x) for x,y in curves)
                 ys=np.stack([y[:length] for x,y in curves]);xs=curves[0][0][:length]
-                ax.plot(xs/1000,ys.mean(0),label=stage.replace(prefix+' ',''))
+                ax.plot(xs/1000,ys.mean(0),label=stage.replace(prefix+' ','').replace(' (ft09 only)',''))
                 ax.fill_between(xs/1000,ys.min(0),ys.max(0),alpha=.12)
         ax.set(title=f'{prefix}: ft09 training',xlabel='Environment decisions (thousands)',ylim=(0,1))
         ax.grid(alpha=.2);ax.legend(fontsize=7)
     axes[0].set_ylabel('Cumulative episodes clearing a level')
     fig.savefig(figures/'learning_curves.png',dpi=190);plt.close(fig)
-    labels=['Random','DQN base','DQN novelty','DQN memory','PPO base','PPO novelty','PPO grid','PPO memory+nov','PPO memory']
-    values=[[5,9,8],[17,20,5],[7,1,5],[3,17,5],[2,0,3],[4,4,20],[0,9,1],[1,1,1],[2,0,4]]
+    labels=['Random','DQN base','DQN novelty','DQN memory','DQN combined','PPO base','PPO novelty','PPO grid','PPO memory+nov','PPO memory']
+    values=[[2,5,8],[17,20,5],[7,1,5],[3,17,5],[19,8,18],[2,0,3],[4,4,20],[0,9,1],[1,1,1],[2,0,4]]
     fig,ax=plt.subplots(figsize=(10,3.4),layout='constrained')
     for i,v in enumerate(values):
         rates=np.array(v)/20

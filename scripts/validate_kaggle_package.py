@@ -1,5 +1,6 @@
 """Verify embedded notebook assets, checkpoint parity and real official loop."""
 import argparse
+import ast
 import base64
 import csv
 import hashlib
@@ -21,6 +22,8 @@ def main():
     args = parser.parse_args()
     import numpy as np
     import torch
+    for name in ['my_agent.py', 'runtime.py']:
+        ast.parse((ROOT/'kaggle'/name).read_text(), feature_version=(3,12))
     torch.set_num_threads(2)
     assert torch.cuda.is_available()
     framework = ROOT/'runs/kaggle_reference/ARC-AGI-3-Agents-main'
@@ -45,6 +48,7 @@ def main():
         # Execute the actual extraction cell, changing only its Linux temp path.
         scope = {}
         extraction = notebook['cells'][1]['source'].replace("Path('/tmp/witsc_assets')", f'Path({str(ROOT / "runs/kaggle_extracted" / model)!r})')
+        extraction = extraction.replace("Path('/kaggle/input')",f'Path({str(ROOT / "kaggle/assets")!r})')
         exec(extraction, scope)
         assets = scope['root']
         assert hashlib.sha256((assets/'weights.npz').read_bytes()).hexdigest() == config['weights_sha256']

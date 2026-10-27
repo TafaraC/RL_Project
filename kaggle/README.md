@@ -1,6 +1,6 @@
 # WitsC Kaggle submission
 
-Generated notebooks live in `submission/WitsC/kaggle/`. Each notebook embeds its complete inference source and losslessly exported model weights. No private dataset upload or GitHub download is needed to load a model.
+Generated notebooks live in `submission/WitsC/kaggle/`. Nine small DQN/PPO notebooks embed inference source; weights are supplied in `model_dataset.zip`, which must be uploaded as a Kaggle dataset and attached. This avoids oversized notebook source. No runtime GitHub download is needed. Nominee: `dqn_baseline.ipynb` (seed 1, epsilon 0.3). PPO alternative: `ppo_novelty.ipynb` (seed 2).
 
 ## PyTorch and platform requirements
 
@@ -16,8 +16,8 @@ Actual Kaggle image compatibility and gateway execution remain unverified until 
 
 ## Lecturer execution
 
-1. Create a notebook in ARC Prize 2026 - ARC-AGI-3 using the account permitted to submit on WitsC's behalf.
-2. Import the nominated `.ipynb`; attach the competition dataset, enable T4 GPU, disable internet.
+1. Create a Kaggle dataset from the supplied `model_dataset.zip` using the account permitted to submit on WitsC's behalf. Preserve its directory structure and `witsc_models_manifest.json`. Kaggle extracts the upload; the notebook expects extracted files, not a nested ZIP.
+2. Create/import the nominated `.ipynb` in ARC Prize 2026 - ARC-AGI-3. Attach BOTH the official competition dataset AND the uploaded WitsC model dataset, enable T4 GPU and disable internet. The dataset's username/slug can vary; model discovery uses the marker and verifies the selected weight hash.
 3. Save & Run All. Inspect the printed preflight success and actual runtime versions.
 4. Submit to Competition and select `submission.parquet`. The ordinary commit-mode file follows the official starter's placeholder schema and is **not a measured score**. During competition rerun, the official gateway records actions and creates the scored output.
 5. Save the actual submission ID, timestamp, score and notebook URL for the team. Do not substitute the placeholder's numeric value for an official score.

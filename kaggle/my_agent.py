@@ -1,4 +1,4 @@
-"""Portable frozen PPO inference for the official ARC-AGI-3 Agent interface.
+"""Portable frozen DQN/PPO inference for the official ARC-AGI-3 Agent interface.
 
 No training dependencies, private state, game-ID routing, or network calls.
 Weights are NumPy arrays exported losslessly from our own PPO checkpoints.

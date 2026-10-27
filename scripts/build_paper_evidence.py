@@ -57,7 +57,7 @@ def main():
     lines += ['', f'Audited {len(rows)} evaluation files ({sum(r["episodes"] for r in rows)} episodes). No full-game wins. All audited greedy evaluations completed zero levels. Historical baseline greedy files are excluded from this aggregate because their layout differs.', '',
         'The CSV includes original source paths, published copies under `evaluation_logs/`, action totals and recorded evaluation wall times. The source wall_s field is cumulative, so each file runtime is its final/max value, not the sum of its rows. Wall times exclude orchestration overhead. This is an evidence export, not a new benchmark run.', '',
         'Only three independent training seeds exist per condition. Twenty sampled rollouts per checkpoint do not constitute twenty independent trained models. Evaluation seeds control action sampling, not game layout generation.', '',
-        'DQN and random-policy historical figures are deliberately excluded: complete matched evaluation evidence was not available for this export. No PPO-versus-DQN superiority claim is supported.']
+        'This export covers PPO only. DQN archive recovery and the final frozen held-out evaluation are documented separately in `submission/WitsC/evidence`. Cross-algorithm comparisons must account for different evaluation policies and CPU/GPU training hardware.']
     (OUT / 'EVIDENCE.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print(json.dumps({'evaluation_files': len(rows), 'episodes': sum(r['episodes'] for r in rows), 'output': str(OUT)}))
 

@@ -5,7 +5,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.591,
+    "seconds": 5.297,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -15,7 +15,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.029,
+    "seconds": 4.765,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -25,7 +25,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.447,
+    "seconds": 6.305,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -35,7 +35,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 3.579,
+    "seconds": 4.132,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -45,7 +45,7 @@
     "actions": 1001,
     "levels": 1,
     "won": false,
-    "seconds": 4.366,
+    "seconds": 4.943,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -55,7 +55,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.17,
+    "seconds": 4.487,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -65,7 +65,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.764,
+    "seconds": 6.255,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -75,7 +75,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 3.978,
+    "seconds": 4.048,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -85,7 +85,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.465,
+    "seconds": 5.585,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -95,7 +95,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.968,
+    "seconds": 4.762,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -105,7 +105,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.511,
+    "seconds": 6.85,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -115,7 +115,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 3.878,
+    "seconds": 4.456,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -125,7 +125,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 6.213,
+    "seconds": 6.831,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -135,7 +135,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.038,
+    "seconds": 5.746,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -145,7 +145,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.133,
+    "seconds": 5.925,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -155,7 +155,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.549,
+    "seconds": 5.187,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -165,7 +165,7 @@
     "actions": 1001,
     "levels": 1,
     "won": false,
-    "seconds": 5.629,
+    "seconds": 6.08,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -175,7 +175,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.244,
+    "seconds": 5.125,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -185,7 +185,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 7.089,
+    "seconds": 6.649,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -195,7 +195,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.091,
+    "seconds": 4.987,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -205,7 +205,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.812,
+    "seconds": 5.563,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -215,7 +215,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.402,
+    "seconds": 4.948,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -225,7 +225,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 6.545,
+    "seconds": 6.259,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -235,7 +235,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.239,
+    "seconds": 5.041,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -245,7 +245,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 6.323,
+    "seconds": 6.237,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -255,7 +255,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.175,
+    "seconds": 4.914,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -265,7 +265,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.95,
+    "seconds": 5.643,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -275,7 +275,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.847,
+    "seconds": 4.715,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -285,7 +285,7 @@
     "actions": 1001,
     "levels": 1,
     "won": false,
-    "seconds": 4.636,
+    "seconds": 5.046,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -295,7 +295,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.194,
+    "seconds": 5.03,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -305,7 +305,7 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 5.887,
+    "seconds": 6.408,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   },
@@ -315,7 +315,47 @@
     "actions": 1001,
     "levels": 0,
     "won": false,
-    "seconds": 4.402,
+    "seconds": 4.661,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "dqn_combined",
+    "game": "ft09",
+    "actions": 1001,
+    "levels": 1,
+    "won": false,
+    "seconds": 5.397,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "dqn_combined",
+    "game": "dc22",
+    "actions": 1001,
+    "levels": 0,
+    "won": false,
+    "seconds": 5.099,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "dqn_combined",
+    "game": "g50t",
+    "actions": 1001,
+    "levels": 0,
+    "won": false,
+    "seconds": 6.556,
+    "device": "cuda",
+    "check": "official Agent.main local game; not a Kaggle gateway test"
+  },
+  {
+    "model": "dqn_combined",
+    "game": "m0r0",
+    "actions": 1001,
+    "levels": 0,
+    "won": false,
+    "seconds": 4.667,
     "device": "cuda",
     "check": "official Agent.main local game; not a Kaggle gateway test"
   }

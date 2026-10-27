@@ -16,4 +16,4 @@ The CSV includes original source paths, published copies under `evaluation_logs/
 
 Only three independent training seeds exist per condition. Twenty sampled rollouts per checkpoint do not constitute twenty independent trained models. Evaluation seeds control action sampling, not game layout generation.
 
-DQN and random-policy historical figures are deliberately excluded: complete matched evaluation evidence was not available for this export. No PPO-versus-DQN superiority claim is supported.
+This export covers PPO only. DQN archive recovery and the final frozen held-out evaluation are documented separately in `submission/WitsC/evidence`. Cross-algorithm comparisons must account for different evaluation policies and CPU/GPU training hardware.

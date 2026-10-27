@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "notebook": "dqn_baseline.ipynb",
+  "executed": "embedded source extraction, attached model discovery/hash, real framework import, GPU model load/action and actual parquet write/read",
+  "substitutions": "Kaggle /tmp and /kaggle paths mapped into runs/notebook_commit_test",
+  "installation": "Skipped offline pip install; used locally installed packages",
+  "kaggle_linux_verified": false,
+  "kaggle_gateway_verified": false,
+  "output_schema": [
+    "row_id",
+    "game_id",
+    "end_of_game",
+    "score"
+  ]
+}

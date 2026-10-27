@@ -1,5 +1,24 @@
 # ARC-AGI-3 RL scaffold
 
+## Final Moodle and Kaggle package (27 October 2026)
+
+Start with [WitsC submission instructions](submission/WitsC/START_HERE.md).
+The folder contains the RLC-format report, nine small DQN/PPO notebooks,
+the required model dataset, source, original results and validation records.
+Nominate `dqn_baseline.ipynb`; `ppo_novelty.ipynb` is the principal PPO alternative.
+Kaggle requires attaching both the official competition data and the supplied
+`model_dataset.zip` uploaded as a dataset. Local CUDA validation is complete;
+an official score requires the lecturer's permitted competition rerun.
+
+The final held-out evaluation covers 270 episodes across six stages and three
+training seeds. Original logs and completed development ablations are in
+[the evidence folder](submission/WitsC/evidence). All full-game win counts are zero.
+
+To rebuild the Moodle ZIP from this checkout after obtaining dependencies,
+run `python scripts/assemble_moodle_package.py`, then
+`python scripts/audit_moodle_package.py`. The ZIP is generated locally rather
+than stored as another duplicate of the committed package.
+
 ## Current PPO experiment (23 October 2026)
 
 The current branch adds a small action-history representation to our PPO and

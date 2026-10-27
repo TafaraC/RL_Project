@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "files": 697,
+  "notebooks": [
+    "ppo_baseline",
+    "ppo_novelty",
+    "ppo_grid_control",
+    "ppo_memory_novelty",
+    "ppo_memory_only",
+    "dqn_baseline",
+    "dqn_novelty",
+    "dqn_noop",
+    "dqn_combined"
+  ],
+  "paper_words": 1328,
+  "archive_sha256": "96d9df9ac7cbbd7b60acdd78fb4e2bccc56f4a3701463c63ff43648ba836077b",
+  "checked": [
+    "ZIP CRC",
+    "all file SHA256 hashes",
+    "notebook SHA256",
+    "attached weight SHA256",
+    "notebook source below 1 MB",
+    "Python 3.12 syntax",
+    "GPU/offline metadata",
+    "embedded source parity",
+    "safe file paths",
+    "no local wheels/checkpoint pickle/game-source directories"
+  ],
+  "does_not_verify": [
+    "Kaggle Linux dependency installation",
+    "live competition gateway",
+    "official score"
+  ]
+}

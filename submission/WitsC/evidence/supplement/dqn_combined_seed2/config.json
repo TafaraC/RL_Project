@@ -1,0 +1,19 @@
+{
+  "agent": "dqn",
+  "checkpoint": "runs/dqn_archive/runs_imp12/ft09/dqn_seed2/dqn.pt",
+  "games": "ft09",
+  "episodes": 20,
+  "seed": 100,
+  "max_actions": 1000,
+  "click_grid": 8,
+  "history_len": 4,
+  "ppo_action_memory": false,
+  "device": "cuda",
+  "offline": true,
+  "out_dir": "D:\\Repos\\RL_Project\\runs\\final_supplement_20261027",
+  "eval_epsilon": 0.3,
+  "noop_masking": true,
+  "stochastic": false,
+  "tag": "dqn_combined_seed2",
+  "checkpoint_sha256": "803c779df5d6e02f402013fb1460961d07191a4ca2873c3d8e3a1011f8e94b09"
+}

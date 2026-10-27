@@ -17,13 +17,16 @@ Produce a Moodle-ready folder with an offline ARC-AGI-3 Kaggle notebook, model a
 
 ## Completed checkpoints
 
-- Eight self-contained notebooks: five PPO conditions and three DQN stages. Lossless NumPy weights embedded; readable duplicate exports in `kaggle/assets/` for audit, excluded from Moodle to avoid duplicate weight storage.
-- Local CUDA checks passed: embedded archive integrity, notebook syntax, exact original/exported network parity, memory observation parity, resets and the official Agent.main loop for 1,000 actions on each development game (32 model/game checks).
+- Final packaging: nine small notebooks (five PPO, four DQN) with inference source embedded. Required weights are in `submission/WitsC/kaggle/model_dataset.zip`, to upload as a dataset and attach. This supersedes the oversized embedded-weight notebooks in early checkpoints. Each notebook is under 1 MB (about 8.5 KB) and verifies its required weight hash.
+- Local CUDA checks passed: source archive integrity, attached model hashes, Python 3.12 syntax, exact original/exported network parity, memory observation parity, resets and the official Agent.main loop for 1,000 actions on each development game (36 model/game checks). Nominee commit-mode execution writes/reads the actual parquet schema under local path substitutions; offline pip and live Kaggle are explicitly untested.
 - Full DQN archive recovered from Git LFS and verified via ZIP extraction. Original DQN evaluations and all training-cost data exported.
 - Frozen held-out run complete: 18 jobs, 270 episodes, three training seeds per stage, five rollouts per checkpoint/game. Only DQN baseline seed 1 clears a tr87 level once; no game wins.
-- RLC 2026 report source and initial seven-page PDF built; final held-out paragraph and author emails added, awaiting final compile/visual check.
+- Final seven-page RLC 2026 report compiled and all pages visually inspected, including held-out results, student emails and source/AI disclosures. Cover page omitted; references begin on page 7.
+- Supplemental evaluation finished: 240 random episodes (ft09 successes 2,5,8 /20; other games zero) and 60 combined DQN episodes (19,8,18 /20). Original configurations and results exported.
 - Nomination fixed from development evidence: DQN baseline ft09 seed 1, epsilon 0.3. PPO alternative: novelty ft09 seed 2. No selection based on held-out outcomes.
 
-## Remaining
+## Final local deliverable
 
-Verify Save & Run All output locally with explicit platform substitutions; finish updated Paper Track text, lecturer instructions and Moodle archive; compile/render final report; audit package and push. Actual Kaggle Linux runtime/gateway execution and external publication are not available locally and must not be called verified. No official score/entry ID or Paper Track publication URL is available.
+`submission/WitsC.zip` is assembled (approximately 77 MB) and its 697 files pass ZIP CRC, all-file SHA256, notebook/weight hash, source-parity, Python 3.12 syntax and GPU/offline metadata checks. `submission/WitsC_PACKAGE_AUDIT.json` records the exact archive hash. The paper is 1,328 whitespace-delimited words. Project tests: 45 passed. The folder and rebuild scripts are saved in Git; the outer ZIP is reproducibly assembled locally to avoid another duplicate binary in Git.
+
+Actual Kaggle Linux runtime/gateway execution and external publication are not available locally and must not be called verified. No official score/entry ID or Paper Track publication URL is available. `submission/WitsC/START_HERE.md` is the lecturer handoff; nominated notebook is `dqn_baseline.ipynb`, PPO alternative is `ppo_novelty.ipynb`. Both require the supplied model dataset to be uploaded and attached, plus official competition data. Final archive builder and auditor are in `scripts/`.

@@ -1,0 +1,17 @@
+{
+  "team": "WitsC",
+  "prepared_date_sast": "2026-10-27",
+  "delivery": "Moodle package for lecturer to consider proxy Kaggle submission",
+  "nominated_notebook": "kaggle/dqn_baseline.ipynb",
+  "ppo_alternative": "kaggle/ppo_novelty.ipynb",
+  "code_repository": "https://github.com/TafaraC/RL_Project",
+  "code_submission_id": null,
+  "code_submission_timestamp": null,
+  "official_score": null,
+  "kaggle_notebook_url": null,
+  "paper_track_url": null,
+  "paper_track_saved_text": "paper_track/WRITEUP.md",
+  "status": "Prepared locally; not submitted to Kaggle or Moodle by the assistant",
+  "lecturer_policy": "Lecturer will determine whether proxy scoring is permitted. If permitted, missing-file or format failures receive zero leaderboard marks. If not permitted, the component is removed and the other marks rescaled.",
+  "local_validation": "See validation/; does not certify Kaggle Linux or gateway execution"
+}

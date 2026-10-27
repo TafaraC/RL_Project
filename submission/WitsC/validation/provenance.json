@@ -1,0 +1,13 @@
+{
+  "retrieved_date_sast": "2026-10-27",
+  "official_starter_repository": "https://github.com/arcprize/ARC-AGI-3-Kaggle-Starter",
+  "starter_revision": "eeb1535404f321d280a8f9194bbc1d7aca5f05fc",
+  "local_framework_repository": "https://github.com/arcprize/ARC-AGI-3-Agents",
+  "local_framework_revision": "4743e7d0aaae0ded0d98a89a7e282e63564cd58b",
+  "competition_framework": "Loaded from the attached competition dataset; may differ from local test revision",
+  "notebook_design": "Small Python notebook with embedded inference source; model weights supplied through attached dataset and verified by SHA256",
+  "notebook_size_policy": "Builder and final audit enforce less than 1,000,000 bytes per notebook",
+  "python_compatibility": "Inference and notebook syntax parsed with Python 3.12 feature version; actual local execution uses Python 3.14.3",
+  "torch_compatibility": "Float32 NumPy state arrays without pickle; standard Conv2d, ReLU and Linear architecture; original/exported network parity verified locally. Kaggle's installed PyTorch remains untested here.",
+  "report_validation": "Seven-page RLC 2026 preprint-style PDF, cover page omitted; all seven rendered pages visually inspected; references start on page 7"
+}
